@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-pokemon-app"
+    }
+  },
+  "defaultProject": "angular-pokemon-app",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  align-items: center;
+  background-color: var(--nav-gray);
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.brand-link {
+  font-weight: 300;
+  font-size: 1.5rem;
+}
