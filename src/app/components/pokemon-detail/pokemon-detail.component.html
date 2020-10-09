@@ -1,11 +1,17 @@
-<div *ngIf="pokemon">
-
-  <h2>{{pokemon.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{pokemon.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="pokemon.name" placeholder="name"/>
-    </label>
+<div *ngIf="pokemon"
+     [class.modal]="pokemon"
+     class="details" (click)="onModalClick($event)">
+  <div class="details__card">
+    <h2>{{pokemon.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{pokemon.id}}</div>
+    <div>
+      <img src={{pokemon.imageUrl}} alt={{pokemon.name}}>
+    </div>
+    <div>
+      <ul>
+        <li>{{pokemon.name}}</li>
+        <li>{{pokemon.url}}</li>
+      </ul>
+    </div>
   </div>
-
 </div>

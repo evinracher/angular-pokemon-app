@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class PokemonsComponent implements OnInit {
   selectedPokemon$: Observable<any>;
+  selectedPokemon: Pokemon;
   pokemons: Pokemon[];
 
   constructor(private pokemonService: PokemonService) {
@@ -19,14 +20,14 @@ export class PokemonsComponent implements OnInit {
     this.getPokemons();
   }
 
-  getPokemon(url): Observable<any> {
-    console.log('Getting pokemon');
-    console.log(url);
-    return this.pokemonService.getPokemon(url);
+  onSelect(pokemon: Pokemon): void {
+    console.log('getting');
+    this.getPokemon(pokemon.url);
   }
 
-  onSelect(pokemon: Pokemon): void {
-    this.selectedPokemon$ = this.getPokemon(pokemon.url);
+  getPokemon(url): void {
+    this.pokemonService.getPokemon(url)
+      .subscribe(pokemon => this.selectedPokemon = pokemon);
   }
 
   getPokemons(): void {

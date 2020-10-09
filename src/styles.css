@@ -3,7 +3,9 @@
 :root {
   box-sizing: border-box;
   --app-black: rgb(59, 59, 59);
+  --app-white: rgb(255,255,255);
   --nav-gray: rgb(240, 240, 240);
+  --modal-color: rgba(150, 150, 150, 0.5);
 }
 
 body {

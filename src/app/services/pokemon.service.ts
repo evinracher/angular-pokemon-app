@@ -15,7 +15,7 @@ export class PokemonService {
 
   // TODO: get with pagination
   getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(this.pokemonsUrl)
+    return this.http.get<any>(this.pokemonsUrl)
       .pipe(
         tap(result => console.log(result)),
         map(data =>
@@ -28,9 +28,15 @@ export class PokemonService {
 
   }
 
-  getPokemon(url: string): Observable<any>{
+  getPokemon(url: string): Observable<Pokemon>{
     return this.http.get(url).pipe(
-      tap(result => console.log(result)),
+      map(result => {
+        const pokemon: Pokemon = result as Pokemon;
+        pokemon.url = url;
+        // @ts-ignore
+        pokemon.imageUrl = result.sprites.front_default;
+        return pokemon;
+      }),
       catchError(this.handleError<Pokemon>(`getPokemon url=${url}`))
     );
   }

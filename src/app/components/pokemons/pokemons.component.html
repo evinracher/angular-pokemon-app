@@ -1,9 +1,11 @@
 <div>
   <ul>
-    <li [class.test]="pokemon === (selectedPokemon$ | async)"  *ngFor="let pokemon of pokemons" (click)="onSelect(pokemon)">
+    <li
+      *ngFor="let pokemon of pokemons"
+      [class.test]="pokemon === selectedPokemon"
+      (click)="onSelect(pokemon)">
       <span>{{pokemon.id}}</span>-{{pokemon.name}}
     </li>
   </ul>
-
-  <app-pokemon-detail [pokemon]="selectedPokemon$ | async"></app-pokemon-detail>
 </div>
+<app-pokemon-detail [pokemon]="selectedPokemon"></app-pokemon-detail>

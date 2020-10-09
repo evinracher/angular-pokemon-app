@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Pokemon } from '../../interfaces/pokemon';
+import {Component, OnInit, Input} from '@angular/core';
+import {Pokemon} from '../../interfaces/pokemon';
 import {PokemonService} from '../../services/pokemon.service';
 import {Observable} from 'rxjs';
 
@@ -11,8 +11,15 @@ import {Observable} from 'rxjs';
 export class PokemonDetailComponent implements OnInit {
   @Input() pokemon: Pokemon;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  onModalClick(event): void {
+    if (event.currentTarget === event.target) {
+      this.pokemon = null;
+    }
   }
 }
