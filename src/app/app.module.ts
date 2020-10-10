@@ -10,6 +10,13 @@ import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {PokemonsComponent} from './components/pokemons/pokemons.component';
 import {HomeComponent} from './components/home/home.component';
 import {PokemonDetailComponent} from './components/pokemon-detail/pokemon-detail.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {PokemonModule} from './pokemon/pokemon.module';
+import {EffectsModule} from '@ngrx/effects';
+import {PokemonEffects} from './pokemon/store/effect/pokemon.effects';
 
 @NgModule({
   declarations: [
@@ -22,8 +29,13 @@ import {PokemonDetailComponent} from './components/pokemon-detail/pokemon-detail
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PokemonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreDevtoolsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([PokemonEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   bootstrap: [AppComponent]
