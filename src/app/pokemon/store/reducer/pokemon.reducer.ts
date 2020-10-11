@@ -5,11 +5,15 @@ import {Pokemon} from '../../../models/pokemon';
 export const pokemonFeatureKey = 'pokemon';
 
 export interface PokemonState {
+  comparing: boolean;
+  toCompare: Pokemon;
   toShow: Pokemon;
   pokemons: Pokemon[];
 }
 
 export const initialState: PokemonState = {
+  comparing: false,
+  toCompare: null,
   toShow: null,
   pokemons: []
 };
@@ -17,21 +21,47 @@ export const initialState: PokemonState = {
 export const pokemonReducer = createReducer(
   initialState,
   on(
-    PokemonActions.showPokemon,
-    (state: PokemonState, {pokemon}) => ({...state, toShow: pokemon})
-    ),
+    PokemonActions.selectPokemon,
+    (state) => state
+  ),
+  on(
+    PokemonActions.selectPokemonSuccess,
+    (state: PokemonState, {pokemon}) => {
+      if (state.comparing) {
+        return {...state, toCompare: pokemon};
+      } else {
+        return {...state, toShow: pokemon};
+      }
+    }
+  ),
   on(
     PokemonActions.loadPokemons,
-    (state: PokemonState, ) => ({...state})
+    (state: PokemonState) => state
   ),
   on(
     PokemonActions.loadPokemonsSuccess,
     (state: PokemonState, {pokemons}) => {
-      console.log('In reducer', pokemons);
-      console.log('In reducer', pokemons);
       return ({
         ...state,
         pokemons: state.pokemons.concat(pokemons)
+      });
+    }
+  ),
+  on(
+    PokemonActions.comparePokemons,
+    (state: PokemonState) => {
+      console.log('Comparing pokemons');
+      return {...state, comparing: true};
+    }
+  ),
+  on(
+    PokemonActions.stopCompare,
+    (state: PokemonState) => {
+      return ({
+        ...state,
+        comparing: false,
+        toShow: null,
+        toCompare: null
       });
     }
   )

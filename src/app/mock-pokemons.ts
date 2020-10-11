@@ -1,3 +1,3 @@
-import { Pokemon } from './interfaces/pokemon';
+import {Pokemon} from './models/pokemon';
 
 export const POKEMONS: Pokemon[] = [];

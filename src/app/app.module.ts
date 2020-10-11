@@ -17,6 +17,9 @@ import { environment } from '../environments/environment';
 import {PokemonModule} from './pokemon/pokemon.module';
 import {EffectsModule} from '@ngrx/effects';
 import {PokemonEffects} from './pokemon/store/effect/pokemon.effects';
+import { PokemonComparisonComponent } from './components/pokemon-comparison/pokemon-comparison.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import {PokemonEffects} from './pokemon/store/effect/pokemon.effects';
     NavBarComponent,
     PokemonsComponent,
     HomeComponent,
-    PokemonDetailComponent
+    PokemonDetailComponent,
+    PokemonComparisonComponent,
+    ModalComponent,
+    PokemonCardComponent
   ],
   imports: [
     BrowserModule,

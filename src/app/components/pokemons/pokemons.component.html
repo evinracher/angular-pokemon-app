@@ -1,11 +1,15 @@
+<h2>Listing pokemons</h2>
 <div>
-  <ul>
-    <li
+    <app-pokemon-card
       *ngFor="let pokemon of pokemons"
-      [class.test]="pokemon === selectedPokemon"
+      [pokemon]="pokemon"
+      [hasFavoriteBtn]="false"
       (click)="onSelect(pokemon)">
-      <span>{{pokemon.id}}</span>-{{pokemon.name}}
-    </li>
-  </ul>
+    </app-pokemon-card>
 </div>
-<app-pokemon-detail [pokemon]="selectedPokemon"></app-pokemon-detail>
+<div *ngIf="!comparing; else noComparing">
+  <app-pokemon-detail></app-pokemon-detail>
+</div>
+<ng-template #noComparing>
+  <app-pokemon-comparison></app-pokemon-comparison>
+</ng-template>

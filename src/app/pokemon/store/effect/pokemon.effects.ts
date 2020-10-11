@@ -13,14 +13,31 @@ export class PokemonEffects {
   }
 
   loadPokemons$ = createEffect(() => this.actions$.pipe(
-    ofType('[Pokemon] Load Pokemons'),
-    mergeMap(() => this.pokemonService.getPokemons()
-      .pipe(
-        map(pokemons => {
-          console.log('In effect', pokemons);
-          return ({ type: '[Pokemon API] Pokemons Loaded Success', pokemons });
-        }),
-        catchError(() => EMPTY)
-      ))
+    ofType('[Pokemons] Load Pokemons'),
+    mergeMap((result) => {
+      return this.pokemonService.getPokemons()
+        .pipe(
+          map(pokemons => {
+            return ({type: '[Pokemon API] Load Pokemons Success', pokemons});
+          }),
+          catchError(() => EMPTY)
+        );
+
+    })
+  ));
+
+  selectPokemon$ = createEffect(() => this.actions$.pipe(
+    ofType('[Pokemons] Select Pokemon'),
+    mergeMap(({url}) => {
+      console.log(url);
+      return this.pokemonService.getPokemon(url)
+        .pipe(
+          map(pokemon => {
+            console.log('Pokemon', pokemon);
+            return ({type: '[Pokemon API] Select Pokemon Success', pokemon});
+          }),
+          catchError(() => EMPTY)
+        );
+    })
   ));
 }
