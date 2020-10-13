@@ -6,6 +6,9 @@ import {PokemonService} from '../../../services/pokemon.service';
 
 @Injectable()
 export class PokemonEffects {
+  private initialPokemons = ['bulbasaur', 'charmander', 'squirtle'];
+  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon/';
+
   constructor(
     private actions$: Actions,
     private pokemonService: PokemonService

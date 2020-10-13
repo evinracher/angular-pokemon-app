@@ -10,6 +10,7 @@ export interface PokemonState {
   toShow: Pokemon;
   pokemons: Pokemon[];
   favoritePokemons: Pokemon[];
+  error;
 }
 
 export const initialState: PokemonState = {
@@ -17,7 +18,8 @@ export const initialState: PokemonState = {
   toCompare: null,
   toShow: null,
   pokemons: [],
-  favoritePokemons: []
+  favoritePokemons: [],
+  error: null
 };
 
 export const pokemonReducer = createReducer(
@@ -45,7 +47,13 @@ export const pokemonReducer = createReducer(
     (state: PokemonState, {pokemons}) => {
       return ({
         ...state,
-        pokemons: state.pokemons.concat(pokemons)
+        pokemons: state.pokemons.concat(pokemons.map(item => {
+          if (state.favoritePokemons.find(fav => fav.name === item.name)) {
+            return {...item, isFavorite: true};
+          } else {
+            return item;
+          }
+        }))
       });
     }
   ),
@@ -57,13 +65,14 @@ export const pokemonReducer = createReducer(
     }
   ),
   on(
-    PokemonActions.stopCompare,
+    PokemonActions.closeModal,
     (state: PokemonState) => {
       return ({
         ...state,
         comparing: false,
         toShow: null,
-        toCompare: null
+        toCompare: null,
+        error: null
       });
     }
   ),
@@ -79,6 +88,9 @@ export const pokemonReducer = createReducer(
   on(
     PokemonActions.addToFavoritePokemonsSuccess,
     (state: PokemonState, {pokemon}) => {
+      if (state.favoritePokemons.length === 5) {
+        return {...state, error: {msg: 'Maximum number of favorite pokemons reached'}};
+      }
       if (state.favoritePokemons.find(item => item.id === pokemon.id)) {
         return state;
       }

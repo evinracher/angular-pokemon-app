@@ -11,7 +11,7 @@ import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  private favoritePokemons: Pokemon[];
+  favoritePokemons: Pokemon[];
   constructor(private store: Store<PokemonState>) {
     this.store.pipe(select(selectPokemons))
       .subscribe(

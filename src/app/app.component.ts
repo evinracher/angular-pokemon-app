@@ -11,8 +11,15 @@ import {loadFavoritePokemons} from './pokemon/store/action/pokemon.actions';
 })
 export class AppComponent implements OnInit {
   title = 'angular-pokemon-app';
+  error;
 
   constructor(private store: Store<PokemonState>) {
+    this.store.pipe(select(selectPokemons))
+      .subscribe(
+        state => {
+          this.error = state.error;
+        }
+      );
   }
 
   ngOnInit(): void {

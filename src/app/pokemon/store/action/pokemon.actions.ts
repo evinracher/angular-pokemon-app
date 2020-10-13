@@ -47,8 +47,8 @@ export const comparePokemons = createAction(
   '[Pokemon detail] Compare Pokemons'
 );
 
-export const stopCompare = createAction(
-  '[Pokemon comparison} Stop Compare Pokemons'
+export const closeModal = createAction(
+  '[Modal] Close Modal'
 );
 
 

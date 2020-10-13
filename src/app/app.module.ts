@@ -20,6 +20,7 @@ import {PokemonEffects} from './pokemon/store/effect/pokemon.effects';
 import { PokemonComparisonComponent } from './components/pokemon-comparison/pokemon-comparison.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { ErrorCardComponent } from './components/error-card/error-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
     PokemonDetailComponent,
     PokemonComparisonComponent,
     ModalComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
+    ErrorCardComponent
   ],
   imports: [
     BrowserModule,

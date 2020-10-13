@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';
-import {stopCompare} from '../../pokemon/store/action/pokemon.actions';
+import {closeModal} from '../../pokemon/store/action/pokemon.actions';
 
 @Component({
   selector: 'app-modal',
@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit {
 
   onModalClick(event): void {
     if (event.currentTarget === event.target) {
-      this.store.dispatch(stopCompare());
+      this.store.dispatch(closeModal());
     }
   }
 
