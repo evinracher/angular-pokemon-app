@@ -23,6 +23,11 @@ export const loadFavoritePokemonsSuccess = createAction(
 
 export const addToFavoritePokemons = createAction(
   '[Favorite Pokemons] Add to Favorite Pokemons',
+  (url: string) => ({url})
+);
+
+export const addToFavoritePokemonsSuccess = createAction(
+  '[Favorite Pokemons] Add to Favorite Pokemons Success',
   (pokemon: Pokemon) => ({pokemon})
 );
 

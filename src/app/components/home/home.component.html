@@ -1,1 +1,8 @@
-<p>home works!</p>
+<h2>Favorite pokemons!</h2>
+<div>
+  <app-pokemon-card
+    *ngFor="let pokemon of favoritePokemons"
+    [pokemon]="pokemon"
+    [hasFavoriteBtn]="false">
+  </app-pokemon-card>
+</div>

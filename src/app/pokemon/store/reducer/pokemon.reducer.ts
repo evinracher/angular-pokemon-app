@@ -75,6 +75,25 @@ export const pokemonReducer = createReducer(
         favoritePokemons
       });
     }
+  ),
+  on(
+    PokemonActions.addToFavoritePokemonsSuccess,
+    (state: PokemonState, {pokemon}) => {
+      if (state.favoritePokemons.find(item => item.id === pokemon.id)) {
+        return state;
+      }
+      return ({
+        ...state,
+        pokemons: state.pokemons.map(item => {
+          if (item.name === pokemon.name) {
+            return {...item, isFavorite: true};
+          } else {
+            return item;
+          }
+        }),
+        favoritePokemons: [...state.favoritePokemons, pokemon]
+      });
+    }
   )
 );
 

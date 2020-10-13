@@ -39,6 +39,19 @@ export class PokemonEffects {
     })
   ));
 
+  addToFavoritePokemons$ = createEffect(() => this.actions$.pipe(
+    ofType('[Favorite Pokemons] Add to Favorite Pokemons'),
+    mergeMap(({url}) => {
+      return this.pokemonService.getPokemon(url)
+        .pipe(
+          map(pokemon => {
+            console.log('Adding to favorites', pokemon);
+            return ({type: '[Favorite Pokemons] Add to Favorite Pokemons Success', pokemon});
+          })
+        );
+    })
+  ));
+
   selectPokemon$ = createEffect(() => this.actions$.pipe(
     ofType('[Pokemons] Select Pokemon'),
     mergeMap(({url}) => {

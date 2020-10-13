@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {POKEMONS} from '../mock-pokemons';
 import {Observable, of} from 'rxjs'; // TODO: Delete later
 import { forkJoin } from 'rxjs';
 import {catchError, map, concatMap, tap} from 'rxjs/operators';
@@ -24,15 +23,15 @@ export class PokemonService {
       .pipe(
         map(data => {
           return data.results.map(item => {
-            return {...item, imageUrl: this.getImageUrl(item.url)};
+            return {...item, imageUrl: this.getImageUrl(this.getPokemonId(item.url))};
           });
         }),
         catchError(this.handleError<Pokemon[]>('getHeroes', []))
       );
   }
 
-  getImageUrl(url: string): string {
-    return this.pokemonsImageUrl + this.getPokemonId(url) + '.png';
+  getImageUrl(id: string): string {
+    return this.pokemonsImageUrl + id + '.png';
   }
 
   getPokemonId(url: string): string {
@@ -57,6 +56,7 @@ export class PokemonService {
     return this.http.get(this.pokemonsUrl + name).pipe(
       map(result => {
         const pokemon: Pokemon = result as Pokemon;
+        pokemon.imageUrl = this.getImageUrl(pokemon.id);
         return pokemon;
       })
     );
