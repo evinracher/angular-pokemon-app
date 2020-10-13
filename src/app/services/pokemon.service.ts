@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs'; // TODO: Delete later
-import { forkJoin } from 'rxjs';
+import {forkJoin} from 'rxjs';
 import {catchError, map, concatMap, tap} from 'rxjs/operators';
 import {Pokemon} from '../models/pokemon';
 
@@ -17,13 +17,16 @@ export class PokemonService {
   constructor(private http: HttpClient) {
   }
 
-  // TODO: get with pagination
-  getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<any>(this.pokemonsUrl)
+  getPokemons(url: string): Observable<any> {
+    return this.http.get<any>(url)
       .pipe(
         map(data => {
-          return data.results.map(item => {
-            return {...item, imageUrl: this.getImageUrl(this.getPokemonId(item.url))};
+          console.log(data.results);
+          return ({
+            nextUrl: data.next,
+            pokemons: data.results.map(item => {
+              return {...item, imageUrl: this.getImageUrl(this.getPokemonId(item.url))};
+            })
           });
         }),
         catchError(this.handleError<Pokemon[]>('getHeroes', []))

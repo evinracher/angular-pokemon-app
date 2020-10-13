@@ -5,6 +5,7 @@ import {Pokemon} from '../../../models/pokemon';
 export const pokemonFeatureKey = 'pokemon';
 
 export interface PokemonState {
+  nextUrl: string;
   comparing: boolean;
   toCompare: Pokemon;
   toShow: Pokemon;
@@ -14,6 +15,7 @@ export interface PokemonState {
 }
 
 export const initialState: PokemonState = {
+  nextUrl: 'https://pokeapi.co/api/v2/pokemon/',
   comparing: false,
   toCompare: null,
   toShow: null,
@@ -44,9 +46,10 @@ export const pokemonReducer = createReducer(
   ),
   on(
     PokemonActions.loadPokemonsSuccess,
-    (state: PokemonState, {pokemons}) => {
+    (state: PokemonState, {nextUrl, pokemons }) => {
       return ({
         ...state,
+        nextUrl,
         pokemons: state.pokemons.concat(pokemons.map(item => {
           if (state.favoritePokemons.find(fav => fav.name === item.name)) {
             return {...item, isFavorite: true};
@@ -88,12 +91,14 @@ export const pokemonReducer = createReducer(
   on(
     PokemonActions.addToFavoritePokemonsSuccess,
     (state: PokemonState, {pokemon}) => {
+      const favoritePokemons = [...state.favoritePokemons, pokemon];
       if (state.favoritePokemons.length === 5) {
         return {...state, error: {msg: 'Maximum number of favorite pokemons reached'}};
       }
       if (state.favoritePokemons.find(item => item.id === pokemon.id)) {
         return state;
       }
+      localStorage.setItem('favorites', JSON.stringify(favoritePokemons));
       return ({
         ...state,
         pokemons: state.pokemons.map(item => {
@@ -103,7 +108,16 @@ export const pokemonReducer = createReducer(
             return item;
           }
         }),
-        favoritePokemons: [...state.favoritePokemons, pokemon]
+        favoritePokemons
+      });
+    }
+  ),
+  on(
+    PokemonActions.useFavoritePokemons,
+    (state: PokemonState, {favoritePokemons}) => {
+      return ({
+        ...state,
+        favoritePokemons
       });
     }
   )

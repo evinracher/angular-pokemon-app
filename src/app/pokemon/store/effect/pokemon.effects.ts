@@ -4,10 +4,9 @@ import {EMPTY} from 'rxjs';
 import {map, mergeMap, catchError} from 'rxjs/operators';
 import {PokemonService} from '../../../services/pokemon.service';
 
+// TODO: Adding pokemon actions
 @Injectable()
 export class PokemonEffects {
-  private initialPokemons = ['bulbasaur', 'charmander', 'squirtle'];
-  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
   constructor(
     private actions$: Actions,
@@ -17,11 +16,11 @@ export class PokemonEffects {
 
   loadPokemons$ = createEffect(() => this.actions$.pipe(
     ofType('[Pokemons] Load Pokemons'),
-    mergeMap(() => {
-      return this.pokemonService.getPokemons()
+    mergeMap(({url}) => {
+      return this.pokemonService.getPokemons(url)
         .pipe(
-          map(pokemons => {
-            return ({type: '[Pokemon API] Load Pokemons Success', pokemons});
+          map(({nextUrl, pokemons}) => {
+            return ({type: '[Pokemon API] Load Pokemons Success', nextUrl, pokemons});
           }),
           catchError(() => EMPTY)
         );

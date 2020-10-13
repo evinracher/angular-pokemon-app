@@ -14,6 +14,7 @@ import {Pokemon} from '../../models/pokemon';
 export class PokemonsComponent implements OnInit {
   pokemons: Pokemon[];
   comparing: boolean;
+  nextUrl: string;
 
   constructor(
     private store: Store<PokemonState>
@@ -23,12 +24,17 @@ export class PokemonsComponent implements OnInit {
         state => {
           this.pokemons = state.pokemons;
           this.comparing = state.comparing;
+          this.nextUrl = state.nextUrl;
         }
       );
   }
 
   ngOnInit(): void {
     this.getPokemons();
+  }
+
+  loadMore(): void {
+    this.store.dispatch(loadPokemons(this.nextUrl));
   }
 
   onSelect(pokemon: Pokemon): void {
@@ -40,7 +46,9 @@ export class PokemonsComponent implements OnInit {
   }
 
   getPokemons(): void {
-    this.store.dispatch(loadPokemons());
+    if (this.pokemons.length === 0) {
+      this.store.dispatch(loadPokemons(this.nextUrl));
+    }
   }
 
 }

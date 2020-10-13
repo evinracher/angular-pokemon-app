@@ -21,6 +21,7 @@ import { PokemonComparisonComponent } from './components/pokemon-comparison/poke
 import { ModalComponent } from './components/modal/modal.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { ErrorCardComponent } from './components/error-card/error-card.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ErrorCardComponent } from './components/error-card/error-card.component
     FormsModule,
     HttpClientModule,
     StoreDevtoolsModule,
+    InfiniteScrollModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([PokemonEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []

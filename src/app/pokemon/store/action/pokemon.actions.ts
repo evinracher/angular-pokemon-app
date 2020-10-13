@@ -2,16 +2,24 @@ import {createAction, props} from '@ngrx/store';
 import {Pokemon} from '../../../models/pokemon';
 
 export const loadPokemons = createAction(
-  '[Pokemons] Load Pokemons'
+  '[Pokemons] Load Pokemons',
+  (url: string) => ({url})
 );
 
 export const loadPokemonsSuccess = createAction(
   '[Pokemon API] Load Pokemons Success',
-  (pokemons: Pokemon[]) => ({pokemons})
+  (nextUrl: string, pokemons: Pokemon[]) => ({nextUrl, pokemons})
 );
 
 export const loadFavoritePokemons = createAction(
   '[Home] Load Favorite Pokemons'
+);
+
+export const useFavoritePokemons = createAction(
+  '[Home] Use Favorite Pokemons',
+  (favoritePokemons: Pokemon[]) => {
+    return ({favoritePokemons});
+  }
 );
 
 export const loadFavoritePokemonsSuccess = createAction(
