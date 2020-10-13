@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {POKEMONS} from '../mock-pokemons';
 import {Observable, of} from 'rxjs'; // TODO: Delete later
+import { forkJoin } from 'rxjs';
 import {catchError, map, concatMap, tap} from 'rxjs/operators';
 import {Pokemon} from '../models/pokemon';
 
@@ -11,7 +12,8 @@ import {Pokemon} from '../models/pokemon';
 })
 export class PokemonService {
   private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon/';
-  private pokemonsImageUrl = 'https://pokeapi.co/api/v2/pokemon-form/';
+  private pokemonsImageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+  private initialPokemons = ['bulbasaur', 'charmander', 'squirtle'];
 
   constructor(private http: HttpClient) {
   }
@@ -21,27 +23,21 @@ export class PokemonService {
     return this.http.get<any>(this.pokemonsUrl)
       .pipe(
         map(data => {
-
-
-          data.results.map(item => {
-            fetch(this.pokemonsImageUrl + item.name).then(
-              result => {
-                console.log(result);
-                return result.json();
-              }
-            ).then(data => {
-              console.log(data);
-              return data;
-            });
-            return item;
+          return data.results.map(item => {
+            return {...item, imageUrl: this.getImageUrl(item.url)};
           });
-
-          return data.results;
         }),
-
-
-        // catchError(this.handleError<Pokemon[]>('getHeroes', []))
+        catchError(this.handleError<Pokemon[]>('getHeroes', []))
       );
+  }
+
+  getImageUrl(url: string): string {
+    return this.pokemonsImageUrl + this.getPokemonId(url) + '.png';
+  }
+
+  getPokemonId(url: string): string {
+    const index: number = url.lastIndexOf('/', url.length - 2);
+    return url.substring(index + 1, url.length - 1);
   }
 
   getPokemon(url: string): Observable<Pokemon> {
@@ -57,6 +53,24 @@ export class PokemonService {
     );
   }
 
+  getPokemonByName(name: string): Observable<Pokemon> {
+    return this.http.get(this.pokemonsUrl + name).pipe(
+      map(result => {
+        const pokemon: Pokemon = result as Pokemon;
+        return pokemon;
+      })
+    );
+  }
+
+  getInitials(): Observable<Pokemon[]> {
+    const observableBatch: Observable<Pokemon>[] = [];
+    this.initialPokemons.forEach((name) => {
+      if (name) {
+        observableBatch.push(this.getPokemonByName(name));
+      }
+    });
+    return forkJoin(observableBatch);
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

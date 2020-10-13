@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Pokemon} from '../../models/pokemon';
+import {Store} from '@ngrx/store';
+import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
+import {loadFavoritePokemons} from '../../pokemon/store/action/pokemon.actions';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  private favoritePokemons: Pokemon[];
+  constructor(private store: Store<PokemonState>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadFavoritePokemons());
   }
 
 }

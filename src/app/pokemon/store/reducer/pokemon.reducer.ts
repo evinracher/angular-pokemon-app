@@ -9,13 +9,15 @@ export interface PokemonState {
   toCompare: Pokemon;
   toShow: Pokemon;
   pokemons: Pokemon[];
+  favoritePokemons: Pokemon[];
 }
 
 export const initialState: PokemonState = {
   comparing: false,
   toCompare: null,
   toShow: null,
-  pokemons: []
+  pokemons: [],
+  favoritePokemons: []
 };
 
 export const pokemonReducer = createReducer(
@@ -62,6 +64,15 @@ export const pokemonReducer = createReducer(
         comparing: false,
         toShow: null,
         toCompare: null
+      });
+    }
+  ),
+  on(
+    PokemonActions.loadFavoritePokemonsSuccess,
+    (state: PokemonState, {favoritePokemons}) => {
+      return ({
+        ...state,
+        favoritePokemons
       });
     }
   )

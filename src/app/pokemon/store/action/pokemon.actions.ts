@@ -10,6 +10,22 @@ export const loadPokemonsSuccess = createAction(
   (pokemons: Pokemon[]) => ({pokemons})
 );
 
+export const loadFavoritePokemons = createAction(
+  '[Home] Load Favorite Pokemons'
+);
+
+export const loadFavoritePokemonsSuccess = createAction(
+  '[Pokemon API] Load Favorite Pokemons Success',
+  (favoritePokemons: Pokemon[]) => {
+    return ({favoritePokemons});
+  }
+);
+
+export const addToFavoritePokemons = createAction(
+  '[Favorite Pokemons] Add to Favorite Pokemons',
+  (pokemon: Pokemon) => ({pokemon})
+);
+
 export const selectPokemon = createAction(
   '[Pokemons] Select Pokemon',
   (url: string) => ({url})

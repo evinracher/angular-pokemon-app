@@ -14,7 +14,7 @@ export class PokemonEffects {
 
   loadPokemons$ = createEffect(() => this.actions$.pipe(
     ofType('[Pokemons] Load Pokemons'),
-    mergeMap((result) => {
+    mergeMap(() => {
       return this.pokemonService.getPokemons()
         .pipe(
           map(pokemons => {
@@ -23,6 +23,19 @@ export class PokemonEffects {
           catchError(() => EMPTY)
         );
 
+    })
+  ));
+
+  loadFavoritePokemons$ = createEffect(() => this.actions$.pipe(
+    ofType('[Home] Load Favorite Pokemons'),
+    mergeMap(() => {
+      return this.pokemonService.getInitials()
+        .pipe(
+          map(favoritePokemons => {
+            console.log(favoritePokemons);
+            return ({type: '[Pokemon API] Load Favorite Pokemons Success', favoritePokemons});
+          })
+        );
     })
   ));
 
