@@ -2,7 +2,6 @@
     <app-pokemon-card
       *ngFor="let pokemon of pokemons"
       [pokemon]="pokemon"
-      [hasFavoriteBtn]="true"
       (click)="onSelect(pokemon)">
     </app-pokemon-card>
 </div>

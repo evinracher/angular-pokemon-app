@@ -44,11 +44,7 @@ export class PokemonsComponent implements OnInit {
   }
 
   onSelect(pokemon: Pokemon): void {
-    this.getPokemon(pokemon.url);
-  }
-
-  getPokemon(url): void {
-    this.store.dispatch(selectPokemon(url));
+    this.store.dispatch(selectPokemon(pokemon));
   }
 
   getPokemons(): void {

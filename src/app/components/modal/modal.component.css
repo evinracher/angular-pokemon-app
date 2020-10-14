@@ -19,3 +19,16 @@
   border-radius: 5px;
   overflow: scroll;
 }
+
+
+@media(min-width: 500px) {
+  .details__card {
+    width: 80%;
+  }
+}
+
+@media(min-width: 1000px) {
+  .details__card {
+    width: 60%;
+  }
+}

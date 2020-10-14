@@ -54,11 +54,11 @@ export class PokemonEffects {
 
   selectPokemon$ = createEffect(() => this.actions$.pipe(
     ofType(PokemonActions.selectPokemon),
-    mergeMap(({url}) => {
-      return this.pokemonService.getPokemon(url)
+    mergeMap(({pokemon}) => {
+      return this.pokemonService.getPokemon(pokemon.url)
         .pipe(
-          map(pokemon => {
-            return (PokemonActions.selectPokemonSuccess(pokemon));
+          map(result => {
+            return (PokemonActions.selectPokemonSuccess({...result, isFavorite: pokemon.isFavorite}));
           }),
           catchError(() => EMPTY)
         );

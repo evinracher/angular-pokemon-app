@@ -99,7 +99,7 @@ export const pokemonReducer = createReducer(
       console.log(pokemon);
       const favoritePokemons = [...state.favoritePokemons, {...pokemon, isFavorite: true}];
       if (state.favoritePokemons.length === 5) {
-        return {...state, error: {msg: 'Maximum number of favorite pokemons reached'}};
+        return {...state, error: {msg: 'Maximum number of favorite pokemons has been reached.'}};
       }
       if (state.favoritePokemons.find(item => item.id === pokemon.id)) {
         return state;
@@ -107,6 +107,7 @@ export const pokemonReducer = createReducer(
       localStorage.setItem('favorites', JSON.stringify(favoritePokemons));
       return ({
         ...state,
+        toShow: (state.toShow && state.toShow.id === pokemon.id ) ? {...state.toShow, isFavorite: true} : state.toShow,
         pokemons: state.pokemons.map(item => {
           if (item.name === pokemon.name) {
             return {...item, isFavorite: true};
@@ -144,6 +145,7 @@ export const pokemonReducer = createReducer(
       return ({
         ...state,
         favoritePokemons,
+        toShow: (state.toShow && state.toShow.url === url) ? {...state.toShow, isFavorite: false} : state.toShow,
         pokemons: state.pokemons.map(pokemon => {
           return ({
             ...pokemon,

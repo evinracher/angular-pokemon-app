@@ -11,24 +11,10 @@ import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/s
 })
 export class PokemonCardComponent implements OnInit {
   @Input() pokemon: Pokemon;
-  @Input() hasFavoriteBtn: boolean;
 
-  constructor(private store: Store<PokemonState>
-  ) {
+  constructor() {
   }
 
   ngOnInit(): void {
   }
-
-  makeFavorite(event, url: string): void {
-    event.stopPropagation();
-    this.store.dispatch(addToFavoritePokemons(url));
-  }
-
-  deleteFavorite(event, url: string): void {
-    event.stopPropagation();
-    console.log(url);
-    this.store.dispatch(removeFromFavoritePokemons(url));
-  }
-
 }

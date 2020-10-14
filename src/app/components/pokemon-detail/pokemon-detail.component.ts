@@ -1,9 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {PokemonService} from '../../services/pokemon.service';
-import {Observable} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
-import {comparePokemons} from '../../pokemon/store/action/pokemon.actions';
+import {closeModal, comparePokemons} from '../../pokemon/store/action/pokemon.actions';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
 import {Pokemon} from '../../models/pokemon';
 
@@ -29,5 +27,9 @@ export class PokemonDetailComponent implements OnInit {
 
   compare(): void {
     this.store.dispatch(comparePokemons());
+  }
+
+  closeModal(): void {
+    this.store.dispatch(closeModal());
   }
 }

@@ -46,15 +46,13 @@ export const removeFromFavoritePokemons = createAction(
 
 export const selectPokemon = createAction(
   '[Pokemons] Select Pokemon',
-  (url: string) => ({url})
-  )
-;
+  (pokemon: Pokemon) => ({pokemon})
+);
 
 export const selectPokemonSuccess = createAction(
   '[Pokemon API] Select Pokemon Success',
   (pokemon: Pokemon) => ({pokemon})
-  )
-;
+);
 
 export const comparePokemons = createAction(
   '[Pokemon detail] Compare Pokemons'

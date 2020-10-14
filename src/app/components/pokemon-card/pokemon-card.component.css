@@ -25,17 +25,9 @@
 
 .card__btn {
   position: absolute;
-  margin: 1rem;
+  margin: 0.2rem;
   top: 0;
   right: 0;
-}
-
-.favorite {
-  color: var(--app-orange);
-}
-
-.material-icons:hover {
-  cursor: pointer;
 }
 
 @media(min-width: 500px) {
