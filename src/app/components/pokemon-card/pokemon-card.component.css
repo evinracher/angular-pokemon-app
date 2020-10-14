@@ -1,8 +1,9 @@
 .card{
   position: relative;
-  border: 1px solid var(--dark-gray);
+  border: 1px solid var(--app-dark-gray);
   overflow: hidden;
   border-radius: 5px;
+  cursor: zoom-in;
 }
 
 .card__img {
@@ -12,14 +13,14 @@
 
 .card__name {
   padding: 0.2rem 0.5rem;
-  background: var(--gray);
+  background: var(--app-gray);
   margin: 0;
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
-  border-top: 1px solid var(--dark-gray);
+  border-top: 1px solid var(--app-dark-gray);
 }
 
 .card__btn {
@@ -29,8 +30,20 @@
   right: 0;
 }
 
+.favorite {
+  color: var(--app-orange);
+}
+
+.material-icons:hover {
+  cursor: pointer;
+}
+
 @media(min-width: 500px) {
   .card {
     width: 12rem;
+  }
+
+  .card__img {
+    min-height: 12rem;
   }
 }

@@ -4,9 +4,10 @@
   box-sizing: border-box;
   --app-black: rgb(40, 40, 40);
   --app-white: rgb(255, 255, 255);
+  --app-dark-gray: rgb(220, 220, 220);
+  --app-gray: rgb(240, 240, 240);
+  --app-orange: rgb(255, 165, 0);
   --nav-gray: rgb(240, 240, 240);
-  --dark-gray: rgb(220, 220, 220);
-  --gray: rgb(240, 240, 240);
   --modal-color: rgba(150, 150, 150, 0.5);
 }
 

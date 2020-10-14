@@ -30,13 +30,18 @@ export const loadFavoritePokemonsSuccess = createAction(
 );
 
 export const addToFavoritePokemons = createAction(
-  '[Favorite Pokemons] Add to Favorite Pokemons',
+  '[Favorite Pokemons] Add To Favorite Pokemons',
   (url: string) => ({url})
 );
 
 export const addToFavoritePokemonsSuccess = createAction(
-  '[Favorite Pokemons] Add to Favorite Pokemons Success',
+  '[Favorite Pokemons] Add To Favorite Pokemons Success',
   (pokemon: Pokemon) => ({pokemon})
+);
+
+export const removeFromFavoritePokemons = createAction(
+  '[Favorite Pokemons] Remove From Favorite Pokemons',
+  (url: string) => ({url})
 );
 
 export const selectPokemon = createAction(

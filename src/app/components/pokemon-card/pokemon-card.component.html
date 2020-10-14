@@ -4,6 +4,16 @@
     src="{{pokemon.imageUrl}}"
     alt="{{pokemon.name}}"/>
   <p class="card__name">{{pokemon.name}}</p>
-  <button class="card__btn" *ngIf="hasFavoriteBtn && !pokemon.isFavorite" (click)="makeFavorite($event,pokemon.url)">Favorite
-  </button>
+  <div class="card__btn">
+    <div *ngIf="pokemon.isFavorite; else noFavorite">
+      <i class="favorite material-icons" (click)="deleteFavorite($event,pokemon.url)">
+        star
+      </i>
+    </div>
+    <ng-template #noFavorite>
+      <i class="material-icons" (click)="makeFavorite($event,pokemon.url)">
+        star_border
+      </i>
+    </ng-template>
+  </div>
 </div>

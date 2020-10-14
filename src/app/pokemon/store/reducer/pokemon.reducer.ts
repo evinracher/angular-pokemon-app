@@ -1,6 +1,7 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import * as PokemonActions from '../action/pokemon.actions';
-import {Pokemon} from '../../../models/pokemon';
+import {Pokemon, pokemonsUrl} from '../../../models/pokemon';
+import {PokemonService} from '../../../services/pokemon.service';
 
 export const pokemonFeatureKey = 'pokemon';
 
@@ -48,7 +49,7 @@ export const pokemonReducer = createReducer(
   ),
   on(
     PokemonActions.loadPokemonsSuccess,
-    (state: PokemonState, {nextUrl, pokemons }) => {
+    (state: PokemonState, {nextUrl, pokemons}) => {
       return ({
         ...state,
         nextUrl,
@@ -86,14 +87,17 @@ export const pokemonReducer = createReducer(
     (state: PokemonState, {favoritePokemons}) => {
       return ({
         ...state,
-        favoritePokemons
+        favoritePokemons: favoritePokemons.map(pokemon => {
+          return ({...pokemon, isFavorite: true, url: pokemonsUrl + pokemon.id + '/'});
+        })
       });
     }
   ),
   on(
     PokemonActions.addToFavoritePokemonsSuccess,
     (state: PokemonState, {pokemon}) => {
-      const favoritePokemons = [...state.favoritePokemons, pokemon];
+      console.log(pokemon);
+      const favoritePokemons = [...state.favoritePokemons, {...pokemon, isFavorite: true}];
       if (state.favoritePokemons.length === 5) {
         return {...state, error: {msg: 'Maximum number of favorite pokemons reached'}};
       }
@@ -129,6 +133,23 @@ export const pokemonReducer = createReducer(
       return ({
         ...state,
         searchedPokemon
+      });
+    }
+  ),
+  on(
+    PokemonActions.removeFromFavoritePokemons,
+    (state: PokemonState, {url}) => {
+      const favoritePokemons = state.favoritePokemons.filter(pokemon => pokemon.url !== url);
+      localStorage.setItem('favorites', JSON.stringify(favoritePokemons));
+      return ({
+        ...state,
+        favoritePokemons,
+        pokemons: state.pokemons.map(pokemon => {
+          return ({
+            ...pokemon,
+            isFavorite: pokemon.url === url ? false : pokemon.isFavorite,
+          });
+        })
       });
     }
   )

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';
-import {addToFavoritePokemons} from '../../pokemon/store/action/pokemon.actions';
+import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/store/action/pokemon.actions';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -23,6 +23,12 @@ export class PokemonCardComponent implements OnInit {
   makeFavorite(event, url: string): void {
     event.stopPropagation();
     this.store.dispatch(addToFavoritePokemons(url));
+  }
+
+  deleteFavorite(event, url: string): void {
+    event.stopPropagation();
+    console.log(url);
+    this.store.dispatch(removeFromFavoritePokemons(url));
   }
 
 }

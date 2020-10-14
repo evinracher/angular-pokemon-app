@@ -1,18 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs'; // TODO: Delete later
+import {HttpClient} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 import {forkJoin} from 'rxjs';
-import {catchError, map, concatMap, tap} from 'rxjs/operators';
-import {Pokemon} from '../models/pokemon';
+import {catchError, map} from 'rxjs/operators';
+import {initialPokemons, Pokemon, pokemonsImageUrl, pokemonsUrl} from '../models/pokemon';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
-  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon/';
-  private pokemonsImageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-  private initialPokemons = ['bulbasaur', 'charmander', 'squirtle'];
 
   constructor(private http: HttpClient) {
   }
@@ -33,7 +30,7 @@ export class PokemonService {
   }
 
   getImageUrl(id: string): string {
-    return this.pokemonsImageUrl + id + '.png';
+    return pokemonsImageUrl + id + '.png';
   }
 
   getPokemonId(url: string): string {
@@ -55,7 +52,7 @@ export class PokemonService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    return this.http.get(this.pokemonsUrl + name).pipe(
+    return this.http.get(pokemonsUrl + name).pipe(
       map(result => {
         const pokemon: Pokemon = result as Pokemon;
         pokemon.imageUrl = this.getImageUrl(pokemon.id);
@@ -66,7 +63,7 @@ export class PokemonService {
 
   getInitials(): Observable<Pokemon[]> {
     const observableBatch: Observable<Pokemon>[] = [];
-    this.initialPokemons.forEach((name) => {
+    initialPokemons.forEach((name) => {
       if (name) {
         observableBatch.push(this.getPokemonByName(name));
       }

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {EMPTY} from 'rxjs';
-import {map, mergeMap, catchError} from 'rxjs/operators';
+import {map, mergeMap, catchError, tap} from 'rxjs/operators';
 import {PokemonService} from '../../../services/pokemon.service';
+import * as PokemonActions from '../action/pokemon.actions';
 
-// TODO: Adding pokemon actions
 @Injectable()
 export class PokemonEffects {
 
@@ -15,12 +15,12 @@ export class PokemonEffects {
   }
 
   loadPokemons$ = createEffect(() => this.actions$.pipe(
-    ofType('[Pokemons] Load Pokemons'),
+    ofType(PokemonActions.loadPokemons),
     mergeMap(({url}) => {
       return this.pokemonService.getPokemons(url)
         .pipe(
           map(({nextUrl, pokemons}) => {
-            return ({type: '[Pokemon API] Load Pokemons Success', nextUrl, pokemons});
+            return (PokemonActions.loadPokemonsSuccess(nextUrl, pokemons));
           }),
           catchError(() => EMPTY)
         );
@@ -29,40 +29,36 @@ export class PokemonEffects {
   ));
 
   loadFavoritePokemons$ = createEffect(() => this.actions$.pipe(
-    ofType('[Home] Load Favorite Pokemons'),
+    ofType(PokemonActions.loadFavoritePokemons),
     mergeMap(() => {
       return this.pokemonService.getInitials()
         .pipe(
           map(favoritePokemons => {
-            console.log(favoritePokemons);
-            return ({type: '[Pokemon API] Load Favorite Pokemons Success', favoritePokemons});
+            return (PokemonActions.loadFavoritePokemonsSuccess(favoritePokemons));
           })
         );
     })
   ));
 
   addToFavoritePokemons$ = createEffect(() => this.actions$.pipe(
-    ofType('[Favorite Pokemons] Add to Favorite Pokemons'),
+    ofType(PokemonActions.addToFavoritePokemons),
     mergeMap(({url}) => {
       return this.pokemonService.getPokemon(url)
         .pipe(
           map(pokemon => {
-            console.log('Adding to favorites', pokemon);
-            return ({type: '[Favorite Pokemons] Add to Favorite Pokemons Success', pokemon});
+            return (PokemonActions.addToFavoritePokemonsSuccess(pokemon));
           })
         );
     })
   ));
 
   selectPokemon$ = createEffect(() => this.actions$.pipe(
-    ofType('[Pokemons] Select Pokemon'),
+    ofType(PokemonActions.selectPokemon),
     mergeMap(({url}) => {
-      console.log(url);
       return this.pokemonService.getPokemon(url)
         .pipe(
           map(pokemon => {
-            console.log('Pokemon', pokemon);
-            return ({type: '[Pokemon API] Select Pokemon Success', pokemon});
+            return (PokemonActions.selectPokemonSuccess(pokemon));
           }),
           catchError(() => EMPTY)
         );
