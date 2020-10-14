@@ -1,6 +1,36 @@
 .card{
-  border: 1px solid red;
-  width: 20%;
+  position: relative;
+  border: 1px solid var(--dark-gray);
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.card__img {
+  image-rendering: pixelated;
+  width: 100%;
+}
+
+.card__name {
+  padding: 0.2rem 0.5rem;
+  background: var(--gray);
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  border-top: 1px solid var(--dark-gray);
+}
+
+.card__btn {
+  position: absolute;
   margin: 1rem;
-  padding: 1rem;
+  top: 0;
+  right: 0;
+}
+
+@media(min-width: 500px) {
+  .card {
+    width: 12rem;
+  }
 }

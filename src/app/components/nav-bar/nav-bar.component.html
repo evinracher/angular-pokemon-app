@@ -1,5 +1,14 @@
 <nav>
-  <a class="brand-link" routerLink="/">PokéApp</a>
-  <a routerLink="/pokemons">Pokémons</a>
-  <!--  search component-->
+  <div class="nav__links">
+    <a class="brand-link" routerLink="/">PokéApp</a>
+    <a routerLink="/pokemons">Pokémons</a>
+  </div>
+  <input
+    class="search-box"
+    #searchBox
+    *ngIf="searching"
+    type="search"
+    placeholder="Search"
+    (input)="search(searchBox.value)"
+  >
 </nav>

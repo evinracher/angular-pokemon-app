@@ -1,5 +1,4 @@
-<h2>Listing pokemons</h2>
-<div infiniteScroll (scrolled)="loadMore()">
+<div class="pokemons" infiniteScroll (scrolled)="loadMore()">
     <app-pokemon-card
       *ngFor="let pokemon of pokemons"
       [pokemon]="pokemon"

@@ -5,6 +5,7 @@ import {Pokemon} from '../../../models/pokemon';
 export const pokemonFeatureKey = 'pokemon';
 
 export interface PokemonState {
+  searchedPokemon: string;
   nextUrl: string;
   comparing: boolean;
   toCompare: Pokemon;
@@ -15,6 +16,7 @@ export interface PokemonState {
 }
 
 export const initialState: PokemonState = {
+  searchedPokemon: '',
   nextUrl: 'https://pokeapi.co/api/v2/pokemon/',
   comparing: false,
   toCompare: null,
@@ -118,6 +120,15 @@ export const pokemonReducer = createReducer(
       return ({
         ...state,
         favoritePokemons
+      });
+    }
+  ),
+  on(
+    PokemonActions.searchPokemon,
+    (state: PokemonState, {searchedPokemon}) => {
+      return ({
+        ...state,
+        searchedPokemon
       });
     }
   )

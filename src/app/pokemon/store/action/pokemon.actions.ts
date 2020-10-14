@@ -60,3 +60,8 @@ export const closeModal = createAction(
 );
 
 
+export const searchPokemon = createAction(
+  '[Search box] Search Pokemon',
+  (searchedPokemon: string) => ({searchedPokemon})
+);
+

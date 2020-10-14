@@ -21,7 +21,6 @@ export class PokemonService {
     return this.http.get<any>(url)
       .pipe(
         map(data => {
-          console.log(data.results);
           return ({
             nextUrl: data.next,
             pokemons: data.results.map(item => {

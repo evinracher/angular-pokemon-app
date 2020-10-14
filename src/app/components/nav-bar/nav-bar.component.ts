@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
+import {Store} from '@ngrx/store';
+import {searchPokemon} from '../../pokemon/store/action/pokemon.actions';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,10 +10,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  searching: boolean;
 
-  constructor() { }
+  constructor(private router: Router, private store: Store<PokemonState>) {
+    router.events
+      .subscribe(event => {
+        switch (true) {
+          case event instanceof NavigationEnd: {
+            // @ts-ignore
+            if (event.url === '/pokemons') {
+              this.searching = true;
+            } else {
+              this.searching = false;
+            }
+            break;
+          }
+        }
+      });
+  }
 
   ngOnInit(): void {
   }
 
+  search(name: string): void {
+    this.store.dispatch(searchPokemon(name.replace(/\s/g, '')));
+  }
 }

@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    console.log('On app init', favorites);
     if (favorites) {
       this.store.dispatch(useFavoritePokemons(favorites));
     } else {
