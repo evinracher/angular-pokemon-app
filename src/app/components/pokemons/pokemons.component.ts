@@ -16,6 +16,8 @@ export class PokemonsComponent implements OnInit {
   comparing: boolean;
   nextUrl: string;
   name: string;
+  toCompare: Pokemon;
+  toShow: Pokemon;
 
   constructor(
     private store: Store<PokemonState>
@@ -31,6 +33,8 @@ export class PokemonsComponent implements OnInit {
           }
           this.comparing = state.comparing;
           this.nextUrl = state.nextUrl;
+          this.toCompare = state.toCompare;
+          this.toShow = state.toShow;
         }
       );
   }

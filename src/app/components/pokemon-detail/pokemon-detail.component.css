@@ -1,15 +1,5 @@
-.header {
-  display: flex;
-  padding: 0 0.5rem;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header__info {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: space-between;
+p, strong, li {
+  font-size: 1.2rem;
 }
 
 .star {
@@ -25,16 +15,66 @@
   font-size: 1rem;
   color: var(--app-white);
   cursor: pointer;
+  width: 100%;
 }
 
 .compare-btn:hover {
   background-color: var(--app-dark-gray);
 }
 
-.close-btn {
-  background-color: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--app-light-black);
-  cursor: pointer;
+.content {
+  padding: 0.5rem;
+}
+
+.info__img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.content__img {
+  image-rendering: pixelated;
+  width: 100%;
+}
+
+.attributes {
+  display: flex;
+  justify-content: space-around;
+  margin: 0.5rem 0;
+}
+
+@media(min-width: 577px) {
+  .info {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .info__img {
+    width: 38%;
+    margin: auto;
+  }
+
+  .info__data {
+    width: 60%;
+  }
+
+  .compare-btn {
+    width: max-content;
+  }
+
+  .content__img {
+    width: 100%;
+  }
+
+  hr {
+    margin: 0;
+  }
+}
+
+@media(min-width: 1000px) {
+  .info__data {
+    width: 60%;
+  }
 }

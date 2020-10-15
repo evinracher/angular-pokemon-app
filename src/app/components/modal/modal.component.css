@@ -21,7 +21,7 @@
 }
 
 
-@media(min-width: 500px) {
+@media(min-width: 577px) {
   .details__card {
     width: 80%;
   }
@@ -29,6 +29,6 @@
 
 @media(min-width: 1000px) {
   .details__card {
-    width: 60%;
+    width: 50%;
   }
 }

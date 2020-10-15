@@ -1,13 +1,18 @@
 <div class="pokemons" infiniteScroll (scrolled)="loadMore()">
-    <app-pokemon-card
-      *ngFor="let pokemon of pokemons"
-      [pokemon]="pokemon"
-      (click)="onSelect(pokemon)">
-    </app-pokemon-card>
+  <app-pokemon-card
+    *ngFor="let pokemon of pokemons"
+    [pokemon]="pokemon"
+    (click)="onSelect(pokemon)">
+  </app-pokemon-card>
 </div>
-<div *ngIf="!comparing; else noComparing">
+<div *ngIf="!comparing; else comparingContainer">
   <app-pokemon-detail></app-pokemon-detail>
 </div>
-<ng-template #noComparing>
+<ng-template #comparingContainer>
+  <div *ngIf="!toCompare" class="comparing">
+    <p class="comparing__title">Comparing pokemon</p>
+    <p class="comparing__name">{{toShow.name | uppercase}}</p>
+  </div>
   <app-pokemon-comparison></app-pokemon-comparison>
 </ng-template>
+

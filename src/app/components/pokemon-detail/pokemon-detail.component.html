@@ -7,14 +7,48 @@
     <button class="close-btn" (click)="closeModal()">x</button>
   </div>
   <hr/>
-  <button class="compare-btn" (click)="compare()">Compare...</button>
-  <div>
-    <img src={{pokemon.imageUrl}} alt={{pokemon.name}}>
+  <div class="content">
+    <div class="info">
+      <div class="info__img">
+        <img class="content__img" src={{pokemon.imageUrl}} alt={{pokemon.name}}>
+        <button class="compare-btn" (click)="compare()">Compare to...</button>
+      </div>
+      <div class="info__data">
+        <p>{{pokemon.description}}</p>
+        <hr/>
+        <div class="attributes">
+          <div>
+            <strong>Height</strong>
+            <p>{{pokemon.height * 10}}cm</p>
+          </div>
+          <div>
+            <strong>Weight</strong>
+            <p>{{pokemon.weight * 0.1}}kg</p>
+          </div>
+          <div>
+            <strong>Gender</strong>
+            <p>{{pokemon.gender}}</p>
+          </div>
+        </div>
+        <div class="attributes">
+          <div>
+            <strong>Abilities</strong>
+            <ul>
+              <li *ngFor="let item of pokemon.abilities">{{item.ability.name}}</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Types</strong>
+            <ul>
+              <li *ngFor="let item of pokemon.abilities">{{item.ability.name}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
   </div>
-  <div>
-    <ul>
-      <li>{{pokemon.name}}</li>
-      <li>{{pokemon.url}}</li>
-    </ul>
+  <div class="stats">
+    <app-graphics [dataset]="[pokemon.stats_data]"></app-graphics>
   </div>
 </app-modal>

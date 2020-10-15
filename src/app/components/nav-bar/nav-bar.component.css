@@ -30,7 +30,7 @@ a {
 }
 
 
-@media (min-width: 500px) {
+@media (min-width: 577px) {
   nav {
     display: flex;
     justify-content: space-between;

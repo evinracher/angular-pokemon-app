@@ -17,11 +17,29 @@ body {
 }
 
 
-p, a, h1, h2, h3 {
+p, a, h1, h2, h3, strong, li {
   font-family: "Roboto", sans-serif;
   color: var(--app-black);
 }
 
-.test {
-  border: 1px solid red;
+.header {
+  display: flex;
+  padding: 0 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__info {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--app-light-black);
+  cursor: pointer;
 }

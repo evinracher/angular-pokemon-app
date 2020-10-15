@@ -3,6 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Pokemon} from '../../models/pokemon';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
+import {closeModal} from '../../pokemon/store/action/pokemon.actions';
 
 @Component({
   selector: 'app-pokemon-comparison',
@@ -24,6 +25,10 @@ export class PokemonComparisonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  closeModal(): void {
+    this.store.dispatch(closeModal());
   }
 
 }

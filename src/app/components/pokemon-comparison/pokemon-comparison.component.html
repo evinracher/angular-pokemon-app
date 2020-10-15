@@ -1,6 +1,46 @@
 <app-modal *ngIf="toCompare">
-  <div>
-    <p>To Show: {{toShow.name}}</p>
-    <p>To Compare: {{toCompare.name}}</p>
+  <div class="header">
+    <div class="header__info">
+      <h2>{{toShow.name + ' vs. ' + toCompare.name | uppercase}}</h2>
+    </div>
+    <button class="close-btn" (click)="closeModal()">x</button>
+  </div>
+  <hr/>
+  <div class="content">
+    <div class="content__imgs">
+      <img src="{{toShow.imageUrl}}" alt="{{toShow.name}}">
+      <img src="{{toCompare.imageUrl}}" alt="{{toCompare.name}}">
+    </div>
+    <hr/>
+    <div class="content__data">
+      <div class="data__row">
+        <p>{{toShow.height * 10}}cm</p>
+        <strong>Height</strong>
+        <p>{{toCompare.height * 10}}cm</p>
+      </div>
+      <div class="data__row">
+        <p>{{toShow.weight * 0.1}}kg</p>
+        <strong>Weight</strong>
+        <p>{{toCompare.weight * 0.1}}kg</p>
+      </div>
+      <div class="data__row">
+        <p>{{toShow.gender}}</p>
+        <strong>Gender</strong>
+        <p>{{toCompare.gender}}</p>
+      </div>
+      <div class="data__row abilities">
+        <div>
+          <p *ngFor="let item of toShow.abilities">{{item.ability.name}}</p>
+        </div>
+        <p><strong>Abilities</strong></p>
+        <div>
+          <p *ngFor="let item of toCompare.abilities">{{item.ability.name}}</p>
+        </div>
+      </div>
+    </div>
+    <hr/>
+  </div>
+  <div class="stats">
+    <app-graphics [dataset]="[toShow.stats_data, toCompare.stats_data]"></app-graphics>
   </div>
 </app-modal>

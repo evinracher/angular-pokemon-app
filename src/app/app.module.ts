@@ -23,6 +23,7 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
 import { ErrorCardComponent } from './components/error-card/error-card.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { FavoriteBtnComponent } from './components/favorite-btn/favorite-btn.component';
+import { GraphicsComponent } from './components/graphics/graphics.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FavoriteBtnComponent } from './components/favorite-btn/favorite-btn.com
     ModalComponent,
     PokemonCardComponent,
     ErrorCardComponent,
-    FavoriteBtnComponent
+    FavoriteBtnComponent,
+    GraphicsComponent
   ],
   imports: [
     BrowserModule,

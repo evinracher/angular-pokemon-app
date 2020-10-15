@@ -20,5 +20,4 @@ export class ModalComponent implements OnInit {
       this.store.dispatch(closeModal());
     }
   }
-
 }
