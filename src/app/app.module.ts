@@ -24,6 +24,7 @@ import { ErrorCardComponent } from './components/error-card/error-card.component
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { FavoriteBtnComponent } from './components/favorite-btn/favorite-btn.component';
 import { GraphicsComponent } from './components/graphics/graphics.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { GraphicsComponent } from './components/graphics/graphics.component';
     InfiniteScrollModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([PokemonEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

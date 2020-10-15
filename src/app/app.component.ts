@@ -3,6 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {PokemonState} from './pokemon/store/reducer/pokemon.reducer';
 import {selectPokemons} from './pokemon/store/selector/pokemon.selectors';
 import {loadFavoritePokemons, useFavoritePokemons} from './pokemon/store/action/pokemon.actions';
+import {Pokemon} from './models/pokemon';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,19 @@ import {loadFavoritePokemons, useFavoritePokemons} from './pokemon/store/action/
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'angular-pokemon-app';
   error;
+  comparing: boolean;
+  toCompare: Pokemon;
+  toShow: Pokemon;
 
   constructor(private store: Store<PokemonState>) {
     this.store.pipe(select(selectPokemons))
       .subscribe(
         state => {
           this.error = state.error;
+          this.comparing = state.comparing;
+          this.toCompare = state.toCompare;
+          this.toShow = state.toShow;
         }
       );
   }

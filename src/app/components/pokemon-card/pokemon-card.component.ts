@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';
-import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/store/action/pokemon.actions';
+import {addToFavoritePokemons, removeFromFavoritePokemons, selectPokemon} from '../../pokemon/store/action/pokemon.actions';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -12,9 +12,13 @@ import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/s
 export class PokemonCardComponent implements OnInit {
   @Input() pokemon: Pokemon;
 
-  constructor() {
+  constructor(private store: Store<PokemonState>) {
   }
 
   ngOnInit(): void {
+  }
+
+  onSelect(pokemon: Pokemon): void {
+    this.store.dispatch(selectPokemon(pokemon));
   }
 }

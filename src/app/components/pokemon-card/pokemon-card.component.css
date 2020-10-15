@@ -4,8 +4,6 @@
   overflow: hidden;
   border-radius: 5px;
   cursor: zoom-in;
-  max-width: 18rem;
-  margin: auto;
 }
 
 .card__img {
@@ -33,10 +31,6 @@
 }
 
 @media(min-width: 577px) {
-  .card {
-    width: 12rem;
-  }
-
   .card__img {
     min-height: 12rem;
   }

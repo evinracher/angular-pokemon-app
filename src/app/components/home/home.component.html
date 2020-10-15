@@ -1,7 +1,5 @@
 <h2>Favorite pokemons!</h2>
-<div>
-  <app-pokemon-card
-    *ngFor="let pokemon of favoritePokemons"
-    [pokemon]="pokemon">
-  </app-pokemon-card>
-</div>
+<app-pokemon-card class="slide"
+  *ngFor="let pokemon of favoritePokemons"
+  [pokemon]="pokemon">
+</app-pokemon-card>

@@ -1,3 +1,41 @@
 .main-container {
   padding: 0.5rem;
 }
+
+.comparing {
+  position: fixed;
+  top: 6rem;
+  left: 20%;
+  width: 60%;
+  border: 1px solid var(--app-dark-gray);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 2;
+  background-color: var(--app-white);
+  margin: 1rem 0;
+  box-shadow: 0 2px 10px 5px var(--app-gray);
+}
+
+.comparing__title {
+  padding: 0.5rem;
+  margin: 0;
+  font-weight: 700;
+  border-bottom: 1px solid var(--app-dark-gray);
+  color: var(--app-light-black);
+}
+
+.comparing__name {
+  padding: 0 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--app-black);
+}
+
+@media (min-width: 577px) {
+  .comparing {
+    right: 2rem;
+    left: auto;
+    width: auto;
+  }
+}

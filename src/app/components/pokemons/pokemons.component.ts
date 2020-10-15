@@ -13,11 +13,8 @@ import {Pokemon} from '../../models/pokemon';
 })
 export class PokemonsComponent implements OnInit {
   pokemons: Pokemon[];
-  comparing: boolean;
   nextUrl: string;
   name: string;
-  toCompare: Pokemon;
-  toShow: Pokemon;
 
   constructor(
     private store: Store<PokemonState>
@@ -31,10 +28,7 @@ export class PokemonsComponent implements OnInit {
           } else {
             this.pokemons = state.pokemons;
           }
-          this.comparing = state.comparing;
           this.nextUrl = state.nextUrl;
-          this.toCompare = state.toCompare;
-          this.toShow = state.toShow;
         }
       );
   }
@@ -45,10 +39,6 @@ export class PokemonsComponent implements OnInit {
 
   loadMore(): void {
     this.store.dispatch(loadPokemons(this.nextUrl));
-  }
-
-  onSelect(pokemon: Pokemon): void {
-    this.store.dispatch(selectPokemon(pokemon));
   }
 
   getPokemons(): void {
