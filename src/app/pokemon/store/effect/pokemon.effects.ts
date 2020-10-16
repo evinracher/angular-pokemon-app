@@ -54,7 +54,6 @@ export class PokemonEffects {
   readyToLoadPokemons$ = createEffect(() => this.actions$.pipe(
     ofType(PokemonActions.loadFavoritePokemonsSuccess, PokemonActions.useFavoritePokemons),
     map(() => {
-        console.log(this.nextUrl);
         return (PokemonActions.loadPokemons(this.nextUrl));
       }
     )
