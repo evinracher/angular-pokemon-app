@@ -1,0 +1,16 @@
+.pokemon-card {
+  width: 75%;
+  margin: auto
+}
+
+.slide {
+  background-color: var(--app-light-black);
+  border-radius: 5px;
+  padding: 2.5rem 0;
+}
+
+@media (min-width: 577px) {
+  .pokemon-card {
+    width: 40%;
+  }
+}

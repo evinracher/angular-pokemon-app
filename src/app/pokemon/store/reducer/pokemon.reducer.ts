@@ -96,7 +96,6 @@ export const pokemonReducer = createReducer(
   on(
     PokemonActions.addToFavoritePokemonsSuccess,
     (state: PokemonState, {pokemon}) => {
-      console.log(pokemon);
       const favoritePokemons = [...state.favoritePokemons, {...pokemon, isFavorite: true}];
       if (state.favoritePokemons.length === 5) {
         return {...state, error: {msg: 'Maximum number of favorite pokemons has been reached.'}};

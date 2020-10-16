@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   overflow: auto;
-  z-index: 3;
+  z-index: 1;
 }
 
 .details__card {

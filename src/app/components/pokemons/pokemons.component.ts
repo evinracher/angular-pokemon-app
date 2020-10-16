@@ -42,9 +42,6 @@ export class PokemonsComponent implements OnInit {
   }
 
   getPokemons(): void {
-    if (this.pokemons.length === 0) {
-      this.store.dispatch(loadPokemons(this.nextUrl));
-    }
     this.store.dispatch(searchPokemon(''));
   }
 }

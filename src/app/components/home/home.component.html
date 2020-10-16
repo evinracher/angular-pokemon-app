@@ -1,5 +1,11 @@
 <h2>Favorite pokemons!</h2>
-<app-pokemon-card class="slide"
-  *ngFor="let pokemon of favoritePokemons"
-  [pokemon]="pokemon">
-</app-pokemon-card>
+<ngb-carousel [interval]="2000" *ngIf="favoritePokemons">
+  <ng-template class="slide" *ngFor="let pokemon of favoritePokemons" ngbSlide>
+    <div class="pokemon-card">
+      <app-pokemon-card
+        class="card"
+        [pokemon]="pokemon">
+      </app-pokemon-card>
+    </div>
+  </ng-template>
+</ngb-carousel>

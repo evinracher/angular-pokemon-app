@@ -4,14 +4,25 @@ import {EMPTY} from 'rxjs';
 import {map, mergeMap, catchError, tap} from 'rxjs/operators';
 import {PokemonService} from '../../../services/pokemon.service';
 import * as PokemonActions from '../action/pokemon.actions';
+import {select, Store} from '@ngrx/store';
+import {PokemonState} from '../reducer/pokemon.reducer';
+import {selectPokemons} from '../selector/pokemon.selectors';
 
 @Injectable()
 export class PokemonEffects {
+  nextUrl: string;
 
   constructor(
     private actions$: Actions,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private store: Store<PokemonState>
   ) {
+    this.store.pipe(select(selectPokemons))
+      .subscribe(state => {
+          this.nextUrl = state.nextUrl;
+        }
+      );
+
   }
 
   loadPokemons$ = createEffect(() => this.actions$.pipe(
@@ -38,6 +49,15 @@ export class PokemonEffects {
           })
         );
     })
+  ));
+
+  readyToLoadPokemons$ = createEffect(() => this.actions$.pipe(
+    ofType(PokemonActions.loadFavoritePokemonsSuccess, PokemonActions.useFavoritePokemons),
+    map(() => {
+        console.log(this.nextUrl);
+        return (PokemonActions.loadPokemons(this.nextUrl));
+      }
+    )
   ));
 
   addToFavoritePokemons$ = createEffect(() => this.actions$.pipe(

@@ -1,7 +1,7 @@
 <app-modal *ngIf="pokemon">
   <div class="header">
     <div class="header__info">
-      <h2>{{pokemon.name | uppercase}}</h2>
+      <h2 class="header__title">{{pokemon.name | uppercase}}</h2>
       <app-favorite-btn class="star" [url]="pokemon.url" [isFavorite]="pokemon.isFavorite"></app-favorite-btn>
     </div>
     <button class="close-btn" (click)="closeModal()">x</button>
