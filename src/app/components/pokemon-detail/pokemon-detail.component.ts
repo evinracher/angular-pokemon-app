@@ -10,7 +10,7 @@ import {Pokemon} from '../../models/pokemon';
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.css']
 })
-export class PokemonDetailComponent implements OnInit {
+export class PokemonDetailComponent {
   pokemon: Pokemon;
 
   constructor(private store: Store<PokemonState>) {
@@ -20,9 +20,6 @@ export class PokemonDetailComponent implements OnInit {
           this.pokemon = state.toShow;
         }
       );
-  }
-
-  ngOnInit(): void {
   }
 
   compare(): void {

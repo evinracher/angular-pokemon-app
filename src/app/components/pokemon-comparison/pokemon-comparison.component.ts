@@ -10,7 +10,7 @@ import {closeModal} from '../../pokemon/store/action/pokemon.actions';
   templateUrl: './pokemon-comparison.component.html',
   styleUrls: ['./pokemon-comparison.component.css']
 })
-export class PokemonComparisonComponent implements OnInit {
+export class PokemonComparisonComponent {
   toShow: Pokemon;
   toCompare: Pokemon;
 
@@ -22,9 +22,6 @@ export class PokemonComparisonComponent implements OnInit {
           this.toCompare = state.toCompare;
         }
       );
-  }
-
-  ngOnInit(): void {
   }
 
   closeModal(): void {

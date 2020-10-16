@@ -9,7 +9,7 @@ import {searchPokemon} from '../../pokemon/store/action/pokemon.actions';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
   searching: boolean;
 
   constructor(private router: Router, private store: Store<PokemonState>) {
@@ -27,9 +27,6 @@ export class NavBarComponent implements OnInit {
           }
         }
       });
-  }
-
-  ngOnInit(): void {
   }
 
   search(name: string): void {

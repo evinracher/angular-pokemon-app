@@ -8,12 +8,9 @@ import {closeModal} from '../../pokemon/store/action/pokemon.actions';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
   constructor(private store: Store<PokemonState>) { }
-
-  ngOnInit(): void {
-  }
 
   onModalClick(event): void {
     if (event.currentTarget === event.target) {

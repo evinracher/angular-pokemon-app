@@ -8,14 +8,11 @@ import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/s
   templateUrl: './favorite-btn.component.html',
   styleUrls: ['./favorite-btn.component.css']
 })
-export class FavoriteBtnComponent implements OnInit {
+export class FavoriteBtnComponent {
   @Input() isFavorite: boolean;
   @Input() url: string;
 
   constructor(private store: Store<PokemonState>) {
-  }
-
-  ngOnInit(): void {
   }
 
   makeFavorite(event, url: string): void {

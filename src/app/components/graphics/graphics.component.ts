@@ -14,9 +14,6 @@ export class GraphicsComponent implements OnInit {
   chart = [];
   private ctx: CanvasRenderingContext2D;
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     this.dataset.forEach((item) => {
       this.datasets.push({data: item});

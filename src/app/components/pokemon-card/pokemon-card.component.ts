@@ -9,13 +9,10 @@ import {selectPokemon} from '../../pokemon/store/action/pokemon.actions';
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.css']
 })
-export class PokemonCardComponent implements OnInit {
+export class PokemonCardComponent {
   @Input() pokemon: Pokemon;
 
   constructor(private store: Store<PokemonState>) {
-  }
-
-  ngOnInit(): void {
   }
 
   onSelect(pokemon: Pokemon): void {
