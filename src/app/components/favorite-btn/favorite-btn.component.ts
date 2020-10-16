@@ -9,8 +9,9 @@ import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/s
   styleUrls: ['./favorite-btn.component.css']
 })
 export class FavoriteBtnComponent implements OnInit {
-  @Input () isFavorite: boolean;
-  @Input () url: string;
+  @Input() isFavorite: boolean;
+  @Input() url: string;
+
   constructor(private store: Store<PokemonState>) {
   }
 
@@ -24,8 +25,10 @@ export class FavoriteBtnComponent implements OnInit {
 
   deleteFavorite(event, url: string): void {
     event.stopPropagation();
-    console.log(url);
-    this.store.dispatch(removeFromFavoritePokemons(url));
+    const ans = confirm('Are you sure');
+    if (ans) {
+      this.store.dispatch(removeFromFavoritePokemons(url));
+    }
   }
 
 }

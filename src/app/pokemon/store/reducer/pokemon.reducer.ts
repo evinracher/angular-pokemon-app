@@ -1,7 +1,6 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import * as PokemonActions from '../action/pokemon.actions';
 import {Pokemon, pokemonsUrl} from '../../../models/pokemon';
-import {PokemonService} from '../../../services/pokemon.service';
 
 export const pokemonFeatureKey = 'pokemon';
 

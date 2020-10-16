@@ -30,5 +30,4 @@ export class PokemonComparisonComponent implements OnInit {
   closeModal(): void {
     this.store.dispatch(closeModal());
   }
-
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
 import {select, Store} from '@ngrx/store';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
-import {loadFavoritePokemons} from '../../pokemon/store/action/pokemon.actions';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
 
 @Component({
