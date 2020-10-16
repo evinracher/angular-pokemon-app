@@ -6,6 +6,10 @@ p, strong {
   text-align: center;
 }
 
+hr {
+  margin: 0;
+}
+
 .content {
   padding: 0 0.5rem;
 }

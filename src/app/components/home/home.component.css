@@ -9,6 +9,12 @@
   padding: 2.5rem 0;
 }
 
+.slide:active,
+.slide:focus {
+  border: none;
+  outline: none;
+}
+
 @media (min-width: 577px) {
   .pokemon-card {
     width: 40%;

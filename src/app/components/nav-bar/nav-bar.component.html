@@ -8,6 +8,8 @@
     #searchBox
     *ngIf="searching"
     type="search"
+    id="mySearch"
+    name="q"
     placeholder="Search"
     (input)="search(searchBox.value)"
   >
