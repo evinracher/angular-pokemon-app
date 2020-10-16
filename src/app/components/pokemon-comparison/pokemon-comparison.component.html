@@ -5,13 +5,13 @@
     </div>
     <button class="close-btn" (click)="closeModal()">x</button>
   </div>
-  <hr/>
+  <hr class="line"/>
   <div class="content">
     <div class="content__imgs">
-      <img src="{{toShow.imageUrl}}" alt="{{toShow.name}}">
-      <img src="{{toCompare.imageUrl}}" alt="{{toCompare.name}}">
+      <img class="content__img" [src]="toShow.imageUrl" [alt]="toShow.name">
+      <img class="content__img" [src]="toCompare.imageUrl" [alt]="toCompare.name">
     </div>
-    <hr/>
+    <hr class="line"/>
     <div class="content__data">
       <div class="data__row">
         <p>{{toShow.height * 10}}cm</p>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <hr/>
+    <hr class="line"/>
   </div>
   <div class="stats">
     <app-graphics [dataset]="[toShow.stats_data, toCompare.stats_data]"></app-graphics>

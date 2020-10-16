@@ -6,16 +6,16 @@
     </div>
     <button class="close-btn" (click)="closeModal()">x</button>
   </div>
-  <hr/>
+  <hr class="line"/>
   <div class="content">
     <div class="info">
       <div class="info__img">
-        <img class="content__img" src={{pokemon.imageUrl}} alt={{pokemon.name}}>
+        <img class="content__img" [src]=pokemon.imageUrl [alt]=pokemon.name>
         <button class="compare-btn" (click)="compare()">Compare to...</button>
       </div>
       <div class="info__data">
         <p>{{pokemon.description}}</p>
-        <hr/>
+        <hr class="line"/>
         <div class="attributes">
           <div>
             <strong>Height</strong>
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <hr />
+    <hr class="line" />
   </div>
   <div class="stats">
     <app-graphics [dataset]="[pokemon.stats_data]"></app-graphics>

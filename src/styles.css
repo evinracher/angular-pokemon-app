@@ -10,12 +10,14 @@
   --app-orange: rgb(255, 165, 0);
   --nav-gray: rgb(240, 240, 240);
   --modal-color: rgba(150, 150, 150, 0.5);
+  --app-fs: 1rem;
+  --app-icons-fs: 2rem;
+  --app-btn-fs: 1.5rem;
 }
 
 body {
   margin: 0;
 }
-
 
 p, a, h1, h2, h3, strong, li {
   font-family: "Roboto", sans-serif;
@@ -43,7 +45,16 @@ p, a, h1, h2, h3, strong, li {
 .close-btn {
   background-color: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: var(--app-btn-fs);
   color: var(--app-light-black);
   cursor: pointer;
+}
+
+.close-btn:active,
+.close-btn:focus {
+  outline: none;
+}
+
+.line {
+  margin: 0.5rem;
 }

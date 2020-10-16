@@ -10,7 +10,7 @@ import {closeModal} from '../../pokemon/store/action/pokemon.actions';
   styleUrls: ['./error-card.component.css']
 })
 export class ErrorCardComponent {
-  error;
+  error: any;
 
   constructor(private store: Store<PokemonState>) {
     this.store.pipe(select(selectPokemons))

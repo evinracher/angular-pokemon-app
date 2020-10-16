@@ -1,29 +1,17 @@
-p, strong, li {
-  font-size: 1.1rem;
-}
-
-p, strong {
-  text-align: center;
-}
-
-hr {
-  margin: 0;
-}
-
 .content {
   padding: 0 0.5rem;
-}
-
-img {
-  width: 12rem;
-  height: 12rem;
-  margin: auto;
-  image-rendering: pixelated;
 }
 
 .content__imgs {
   display: flex;
   flex-direction: column;
+}
+
+.content__img {
+  width: 12rem;
+  height: 12rem;
+  margin: auto;
+  image-rendering: pixelated;
 }
 
 .content__data {
@@ -38,10 +26,6 @@ img {
 
 .abilities {
   align-items: normal;
-}
-
-p {
-  margin: 0.4rem;
 }
 
 .stats {

@@ -117,7 +117,7 @@ export class PokemonService {
     return forkJoin(observableBatch);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T): any {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
       // Let the app keep running by returning an empty result.

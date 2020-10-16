@@ -3,6 +3,6 @@
 }
 
 .material-icons {
-  font-size: 2rem;
+  font-size: var(--app-icons-fs);
   cursor: pointer;
 }

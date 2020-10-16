@@ -1,22 +1,22 @@
-nav {
+.navbar {
   padding: 0.5rem;
   background-color: var(--nav-gray);
 }
 
-.nav__links {
+.navbar__links {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
 
-a {
+.navbar__link {
   text-decoration: none;
   font-weight: 700;
 }
 
 .brand-link {
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: var(--app-btn-fs);
 }
 
 .search-box {
@@ -24,14 +24,13 @@ a {
   height: 2.5rem;
   border: 1px solid var(--app-dark-gray);
   border-radius: 5px;
-  font-size: 1.2rem;
   width: 100%;
   margin: 0.5rem 0;
 }
 
 
 @media (min-width: 577px) {
-  nav {
+  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
