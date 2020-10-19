@@ -27,7 +27,7 @@
 .comparing__name {
   padding: 0 0.5rem;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: var(--app-fs);
   letter-spacing: 2px;
   color: var(--app-black);
 }

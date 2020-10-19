@@ -11,7 +11,7 @@ import {Pokemon} from './models/pokemon';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  error;
+  error: any;
   comparing: boolean;
   toCompare: Pokemon;
   toShow: Pokemon;
