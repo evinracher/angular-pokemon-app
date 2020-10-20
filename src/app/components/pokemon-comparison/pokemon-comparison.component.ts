@@ -5,18 +5,20 @@ import {Pokemon} from '../../models/pokemon';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
 import {closeModal} from '../../pokemon/store/action/pokemon.actions';
 import {Subscription} from 'rxjs';
+import {ModalCard} from '../modal/modal-card';
 
 @Component({
   selector: 'app-pokemon-comparison',
   templateUrl: './pokemon-comparison.component.html',
   styleUrls: ['./pokemon-comparison.component.css']
 })
-export class PokemonComparisonComponent implements OnDestroy {
+export class PokemonComparisonComponent extends ModalCard implements OnDestroy {
   toShow: Pokemon;
   toCompare: Pokemon;
   subscription: Subscription;
 
-  constructor(private store: Store<PokemonState>) {
+  constructor(store: Store<PokemonState>) {
+    super(store);
     this.subscription = this.store.pipe(select(selectPokemons))
       .subscribe(
         state => {
@@ -24,10 +26,6 @@ export class PokemonComparisonComponent implements OnDestroy {
           this.toCompare = state.toCompare;
         }
       );
-  }
-
-  closeModal(): void {
-    this.store.dispatch(closeModal());
   }
 
   ngOnDestroy(): void {

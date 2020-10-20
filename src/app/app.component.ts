@@ -5,6 +5,7 @@ import {selectPokemons} from './pokemon/store/selector/pokemon.selectors';
 import {loadFavoritePokemons, loadPokemons, useFavoritePokemons} from './pokemon/store/action/pokemon.actions';
 import {Pokemon} from './models/pokemon';
 import {Subscription} from 'rxjs';
+import {AppError} from './interfaces/error';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  error: any;
+  error: AppError;
   comparing: boolean;
   toCompare: Pokemon;
   toShow: Pokemon;

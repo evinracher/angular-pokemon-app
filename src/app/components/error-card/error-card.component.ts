@@ -4,26 +4,25 @@ import {select, Store} from '@ngrx/store';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
 import {closeModal} from '../../pokemon/store/action/pokemon.actions';
 import {Subscription} from 'rxjs';
+import {AppError} from '../../interfaces/error';
+import {ModalCard} from '../modal/modal-card';
 
 @Component({
   selector: 'app-error-card',
   templateUrl: './error-card.component.html',
   styleUrls: ['./error-card.component.css']
 })
-export class ErrorCardComponent implements OnDestroy {
+export class ErrorCardComponent extends ModalCard implements OnDestroy {
   subscription: Subscription;
-  error: any;
+  error: AppError;
 
-  constructor(private store: Store<PokemonState>) {
+  constructor(store: Store<PokemonState>) {
+    super(store);
     this.subscription = this.store.pipe(select(selectPokemons))
       .subscribe(
         state => {
           this.error = state.error;
         });
-  }
-
-  onClickCloseModal(): void {
-    this.store.dispatch(closeModal());
   }
 
   ngOnDestroy(): void {

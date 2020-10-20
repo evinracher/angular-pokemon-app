@@ -1,6 +1,7 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import * as PokemonActions from '../action/pokemon.actions';
 import {Pokemon, pokemonsUrl} from '../../../models/pokemon';
+import {AppError} from '../../../interfaces/error';
 
 export const pokemonFeatureKey = 'pokemon';
 
@@ -12,7 +13,7 @@ export interface PokemonState {
   toShow: Pokemon;
   pokemons: Pokemon[];
   favoritePokemons: Pokemon[];
-  error;
+  error: AppError;
 }
 
 export const initialState: PokemonState = {
