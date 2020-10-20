@@ -27,5 +27,4 @@ export class FavoriteBtnComponent {
       this.store.dispatch(removeFromFavoritePokemons(url));
     }
   }
-
 }

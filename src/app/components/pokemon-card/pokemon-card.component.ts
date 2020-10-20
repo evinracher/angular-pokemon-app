@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';

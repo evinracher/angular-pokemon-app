@@ -1,19 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';
 import {searchPokemon} from '../../pokemon/store/action/pokemon.actions';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnDestroy {
   searching: boolean;
+  subscription: Subscription;
 
   constructor(private router: Router, private store: Store<PokemonState>) {
-    router.events
+    this.subscription = router.events
       .subscribe(event => {
         switch (true) {
           case event instanceof NavigationEnd: {
@@ -31,5 +33,9 @@ export class NavBarComponent {
 
   search(name: string): void {
     this.store.dispatch(searchPokemon(name.replace(/\s/g, '')));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -1,7 +1,7 @@
-<app-modal>
+<app-modal [errorCard]="true">
   <div class="error-card">
     <h3 class="error-card__title">Error!</h3>
     <p>{{error.msg}}</p>
-    <button class="btn btn-info error-card__btn" (click)="onClick()">Accept</button>
+    <button class="btn btn-info error-card__btn" (click)="onClickCloseModal()">Accept</button>
   </div>
 </app-modal>

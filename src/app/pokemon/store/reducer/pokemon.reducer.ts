@@ -75,7 +75,7 @@ export const pokemonReducer = createReducer(
       return ({
         ...state,
         comparing: false,
-        toShow: null,
+        toShow: state.error ? state.toShow : null,
         toCompare: null,
         error: null
       });

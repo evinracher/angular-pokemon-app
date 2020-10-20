@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';
 import {closeModal} from '../../pokemon/store/action/pokemon.actions';
@@ -9,8 +9,10 @@ import {closeModal} from '../../pokemon/store/action/pokemon.actions';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
+  @Input() errorCard: boolean;
 
-  constructor(private store: Store<PokemonState>) { }
+  constructor(private store: Store<PokemonState>) {
+  }
 
   onModalClick(event): void {
     if (event.currentTarget === event.target) {

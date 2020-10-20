@@ -12,6 +12,10 @@
   z-index: 16;
 }
 
+.error-modal {
+  z-index: 17;
+}
+
 .details__card {
   background-color: var(--app-white);
   width: 100%;
