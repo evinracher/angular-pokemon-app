@@ -15,7 +15,7 @@ export class PokemonCardComponent {
   constructor(private store: Store<PokemonState>) {
   }
 
-  onSelect(pokemon: Pokemon): void {
+  selectThisPokemon(pokemon: Pokemon): void {
     this.store.dispatch(selectPokemon(pokemon));
   }
 }

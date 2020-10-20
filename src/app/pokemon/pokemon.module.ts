@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 import {pokemonFeatureKey, reducer} from './store/reducer/pokemon.reducer';
 
-
-
 @NgModule({
   declarations: [],
   imports: [

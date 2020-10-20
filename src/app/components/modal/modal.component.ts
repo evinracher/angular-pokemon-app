@@ -14,7 +14,7 @@ export class ModalComponent {
   constructor(private store: Store<PokemonState>) {
   }
 
-  onModalClick(event): void {
+  closeModal(event: Event): void {
     if (event.currentTarget === event.target) {
       this.store.dispatch(closeModal());
     }

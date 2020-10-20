@@ -5,7 +5,7 @@ import {selectPokemons} from './pokemon/store/selector/pokemon.selectors';
 import {loadFavoritePokemons, loadPokemons, useFavoritePokemons} from './pokemon/store/action/pokemon.actions';
 import {Pokemon} from './models/pokemon';
 import {Subscription} from 'rxjs';
-import {AppError} from './interfaces/error';
+import {AppError} from './utils/error';
 
 @Component({
   selector: 'app-root',

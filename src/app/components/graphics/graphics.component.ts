@@ -11,7 +11,7 @@ export class GraphicsComponent implements OnInit {
   canvas: ElementRef<HTMLCanvasElement>;
   @Input() dataset;
   datasets = [];
-  chart = [];
+  chart = Chart;
   private ctx: CanvasRenderingContext2D;
 
   ngOnInit(): void {

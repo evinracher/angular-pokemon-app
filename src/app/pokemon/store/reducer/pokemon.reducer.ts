@@ -1,7 +1,8 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import * as PokemonActions from '../action/pokemon.actions';
-import {Pokemon, pokemonsUrl} from '../../../models/pokemon';
-import {AppError} from '../../../interfaces/error';
+import {Pokemon} from '../../../models/pokemon';
+import {AppError} from '../../../utils/error';
+import {environment} from '../../../../environments/environment';
 
 export const pokemonFeatureKey = 'pokemon';
 
@@ -18,7 +19,7 @@ export interface PokemonState {
 
 export const initialState: PokemonState = {
   searchedPokemon: '',
-  nextUrl: 'https://pokeapi.co/api/v2/pokemon/',
+  nextUrl: environment.pokemonsUrl,
   comparing: false,
   toCompare: null,
   toShow: null,
@@ -88,7 +89,7 @@ export const pokemonReducer = createReducer(
       return ({
         ...state,
         favoritePokemons: favoritePokemons.map(pokemon => {
-          return ({...pokemon, isFavorite: true, url: pokemonsUrl + pokemon.id + '/'});
+          return ({...pokemon, isFavorite: true, url: environment.pokemonsUrl + pokemon.id + '/'});
         })
       });
     }

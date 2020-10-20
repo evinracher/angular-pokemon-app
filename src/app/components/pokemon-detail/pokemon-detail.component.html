@@ -10,7 +10,7 @@
   <div class="content">
     <div class="info">
       <div class="info__img">
-        <img class="content__img" [src]=pokemon.imageUrl [alt]=pokemon.name>
+        <img class="content__img" [src]="pokemon.imageUrl" [alt]="pokemon.name">
         <button class="compare-btn" (click)="compare()">Compare to...</button>
       </div>
       <div class="info__data">
@@ -49,6 +49,6 @@
     <hr class="line" />
   </div>
   <div class="stats">
-    <app-graphics [dataset]="[pokemon.stats_data]"></app-graphics>
+    <app-graphics [dataset]="[pokemon.statsData]"></app-graphics>
   </div>
 </app-modal>

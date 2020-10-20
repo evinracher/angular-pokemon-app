@@ -4,7 +4,7 @@ import {select, Store} from '@ngrx/store';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
 import {closeModal} from '../../pokemon/store/action/pokemon.actions';
 import {Subscription} from 'rxjs';
-import {AppError} from '../../interfaces/error';
+import {AppError} from '../../utils/error';
 import {ModalCard} from '../modal/modal-card';
 
 @Component({
