@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
-import {loadPokemons, searchPokemon, selectPokemon} from '../../pokemon/store/action/pokemon.actions';
+import {loadPokemons, searchPokemon} from '../../pokemon/store/action/pokemon.actions';
 import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
 import {Pokemon} from '../../models/pokemon';
 import {Subscription} from 'rxjs';
@@ -14,7 +14,6 @@ import {Subscription} from 'rxjs';
 export class PokemonsComponent implements OnInit, OnDestroy {
   pokemons: Pokemon[];
   nextUrl: string;
-  name: string;
   subscription: Subscription;
 
   constructor(
@@ -23,12 +22,7 @@ export class PokemonsComponent implements OnInit, OnDestroy {
     this.subscription = this.store.pipe(select(selectPokemons))
       .subscribe(
         state => {
-          this.name = state.searchedPokemon;
-          if (this.name) {
-            this.pokemons = state.pokemons.filter(pokemon => pokemon.name.includes(this.name));
-          } else {
-            this.pokemons = state.pokemons;
-          }
+          this.pokemons = state.pokemons;
           this.nextUrl = state.nextUrl;
         }
       );

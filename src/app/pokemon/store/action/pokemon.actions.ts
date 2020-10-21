@@ -1,4 +1,4 @@
-import {createAction, props} from '@ngrx/store';
+import {createAction} from '@ngrx/store';
 import {Pokemon} from '../../../models/pokemon';
 
 export const loadPokemons = createAction(
@@ -67,4 +67,3 @@ export const searchPokemon = createAction(
   '[Search box] Search Pokemon',
   (searchedPokemon: string) => ({searchedPokemon})
 );
-
