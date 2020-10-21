@@ -4,6 +4,7 @@ import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
 import {Store} from '@ngrx/store';
 import {searchPokemon} from '../../pokemon/store/action/pokemon.actions';
 import {Subscription} from 'rxjs';
+import {PokemonRoute} from './route';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,10 +18,10 @@ export class NavBarComponent implements OnDestroy {
   constructor(private router: Router, private store: Store<PokemonState>) {
     this.subscription = router.events
       .subscribe(event => {
+        const route: PokemonRoute = event as PokemonRoute;
         switch (true) {
           case event instanceof NavigationEnd: {
-            // @ts-ignore
-            if (event.url === '/pokemons') {
+            if (route.url === '/pokemons') {
               this.searching = true;
             } else {
               this.searching = false;

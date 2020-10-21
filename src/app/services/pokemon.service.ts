@@ -5,6 +5,7 @@ import {forkJoin} from 'rxjs';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {Pokemon} from '../models/pokemon';
 import {environment} from '../../environments/environment';
+import {PokemonResponse, PokemonSpecie} from './pokemon-response';
 
 @Injectable({
   providedIn: 'root'
@@ -41,17 +42,13 @@ export class PokemonService {
   getPokemon(url: string): Observable<Pokemon> {
     return this.http.get(url)
       .pipe(
-        switchMap(result => {
-          console.dir(result);
-          const pokemon: Pokemon = result as Pokemon;
-          pokemon.url = url;
-          // @ts-ignore
+        switchMap((result: PokemonResponse) => {
+          result.url = url;
           return this.http.get(result.species.url)
             .pipe(
               map(
-                res => {
-                  console.dir(res);
-                  return this.getPokemonDetails(pokemon, res);
+                (res: PokemonSpecie) => {
+                  return this.getPokemonDetails(result, res);
                 }
               )
             );
@@ -60,7 +57,7 @@ export class PokemonService {
       );
   }
 
-  getPokemonDetails(data, specie): Pokemon {
+  getPokemonDetails(data: PokemonResponse, specie: PokemonSpecie): Pokemon {
     const result: Pokemon = {
       id: data.id,
       url: data.url,

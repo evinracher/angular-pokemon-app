@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import Chart from 'chart.js';
+import {GraphicsData} from './graphics-data';
 
 @Component({
   selector: 'app-graphics',
@@ -9,20 +10,20 @@ import Chart from 'chart.js';
 export class GraphicsComponent implements OnInit {
   @ViewChild('canvas', {static: true})
   canvas: ElementRef<HTMLCanvasElement>;
-  @Input() dataset;
-  datasets = [];
+  @Input() dataset: number[][];
+  datasets: GraphicsData[] = [];
   chart = Chart;
   private ctx: CanvasRenderingContext2D;
 
   ngOnInit(): void {
-    this.dataset.forEach((item) => {
-      this.datasets.push({data: item});
-    });
     const colors = ['rgb(62, 130, 115)', 'rgb(102, 209, 188)'];
     const colorsLength = colors.length;
-    this.datasets.forEach((dataset, index) => {
-      dataset.categoryPercentage = 0.8;
-      dataset.backgroundColor = colors[index % colorsLength];
+    this.dataset.forEach((item, index) => {
+      this.datasets.push({
+        data: item,
+        categoryPercentage: 0.8,
+        backgroundColor: colors[index % colorsLength]
+      });
     });
 
     this.ctx = this.canvas.nativeElement.getContext('2d');

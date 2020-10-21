@@ -17,12 +17,6 @@ export class PokemonEffects {
     private pokemonService: PokemonService,
     private store: Store<PokemonState>
   ) {
-    this.store.pipe(select(selectPokemons))
-      .subscribe(state => {
-          this.nextUrl = state.nextUrl;
-        }
-      );
-
   }
 
   loadPokemons$ = createEffect(() => this.actions$.pipe(
