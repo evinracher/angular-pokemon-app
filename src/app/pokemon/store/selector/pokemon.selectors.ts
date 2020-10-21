@@ -9,3 +9,8 @@ export const selectPokemons = createSelector(
   selectPokemonState,
   (state: fromPokemon.PokemonState) => state
 );
+
+export const getNextUrl = createSelector(
+  selectPokemonState,
+  (state: fromPokemon.PokemonState) => state.nextUrl
+);

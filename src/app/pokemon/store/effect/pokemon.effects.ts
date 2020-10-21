@@ -1,16 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {EMPTY} from 'rxjs';
-import {map, mergeMap, catchError, tap} from 'rxjs/operators';
+import {map, mergeMap, catchError, withLatestFrom} from 'rxjs/operators';
 import {PokemonService} from '../../../services/pokemon.service';
 import * as PokemonActions from '../action/pokemon.actions';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {PokemonState} from '../reducer/pokemon.reducer';
-import {selectPokemons} from '../selector/pokemon.selectors';
+import {getNextUrl} from '../selector/pokemon.selectors';
 
 @Injectable()
 export class PokemonEffects {
-  nextUrl: string;
 
   constructor(
     private actions$: Actions,
@@ -47,8 +46,9 @@ export class PokemonEffects {
 
   readyToLoadPokemons$ = createEffect(() => this.actions$.pipe(
     ofType(PokemonActions.loadFavoritePokemonsSuccess, PokemonActions.useFavoritePokemons),
-    map(() => {
-        return (PokemonActions.loadPokemons(this.nextUrl));
+    withLatestFrom(this.store.select(getNextUrl)),
+    map((res) => {
+        return (PokemonActions.loadPokemons(res[1]));
       }
     )
   ));
