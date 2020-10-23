@@ -16,7 +16,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {PokemonModule} from './pokemon/pokemon.module';
 import {EffectsModule} from '@ngrx/effects';
-import {PokemonEffects} from './pokemon/store/effect/pokemon.effects';
+import {PokemonEffects} from './pokemon/store/effects/pokemon.effects';
 import {PokemonComparisonComponent} from './components/pokemon-comparison/pokemon-comparison.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {PokemonCardComponent} from './components/pokemon-card/pokemon-card.component';
@@ -29,6 +29,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import {PokemonsModule} from './pokemons/pokemons.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     BrowserModule,
     AppRoutingModule,
     PokemonModule,
+    PokemonsModule,
     FormsModule,
     HttpClientModule,
     StoreDevtoolsModule,

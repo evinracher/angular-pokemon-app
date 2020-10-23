@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
-import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/store/action/pokemon.actions';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
+import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/store/actions/pokemon.actions';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
 import {TypedAction} from '@ngrx/store/src/models';

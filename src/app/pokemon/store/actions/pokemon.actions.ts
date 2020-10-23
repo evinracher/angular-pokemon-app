@@ -62,7 +62,6 @@ export const closeModal = createAction(
   '[Modal] Close Modal'
 );
 
-
 export const searchPokemon = createAction(
   '[Search box] Search Pokemon',
   (searchedPokemon: string) => ({searchedPokemon})

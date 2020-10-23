@@ -24,6 +24,7 @@
     "@angular/router": "~10.1.2",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ngrx/effects": "^10.0.1",
+    "@ngrx/entity": "^10.0.1",
     "@ngrx/schematics": "^10.0.1",
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.0.1",

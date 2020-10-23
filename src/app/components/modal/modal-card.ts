@@ -1,6 +1,6 @@
 import {Store} from '@ngrx/store';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
-import {closeModal} from '../../pokemon/store/action/pokemon.actions';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
+import {closeModal} from '../../pokemon/store/actions/pokemon.actions';
 
 export class ModalCard {
 

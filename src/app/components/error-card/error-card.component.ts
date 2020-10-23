@@ -1,8 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
 import {select, Store} from '@ngrx/store';
-import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
-import {closeModal} from '../../pokemon/store/action/pokemon.actions';
+import {selectPokemons} from '../../pokemon/store/selectors/pokemon.selectors';
+import {closeModal} from '../../pokemon/store/actions/pokemon.actions';
 import {Subscription} from 'rxjs';
 import {AppError} from '../../utils/error';
 import {ModalCard} from '../modal/modal-card';

@@ -3,10 +3,10 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {EMPTY} from 'rxjs';
 import {map, mergeMap, catchError, withLatestFrom} from 'rxjs/operators';
 import {PokemonService} from '../../../services/pokemon.service';
-import * as PokemonActions from '../action/pokemon.actions';
+import * as PokemonActions from '../actions/pokemon.actions';
 import {Store} from '@ngrx/store';
-import {PokemonState} from '../reducer/pokemon.reducer';
-import {getNextUrl} from '../selector/pokemon.selectors';
+import {PokemonState} from '../reducers/pokemon.reducer';
+import {getNextUrl} from '../selectors/pokemon.selectors';
 
 @Injectable()
 export class PokemonEffects {

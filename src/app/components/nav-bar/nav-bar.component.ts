@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
 import {Store} from '@ngrx/store';
-import {searchPokemon} from '../../pokemon/store/action/pokemon.actions';
+import {searchPokemon} from '../../pokemon/store/actions/pokemon.actions';
 import {Subscription} from 'rxjs';
 import {PokemonRoute} from './route';
 

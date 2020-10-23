@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
 import {Store} from '@ngrx/store';
-import {closeModal} from '../../pokemon/store/action/pokemon.actions';
+import {closeModal} from '../../pokemon/store/actions/pokemon.actions';
 
 @Component({
   selector: 'app-modal',

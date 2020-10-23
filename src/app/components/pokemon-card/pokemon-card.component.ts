@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
 import {Store} from '@ngrx/store';
-import {selectPokemon} from '../../pokemon/store/action/pokemon.actions';
+import {selectPokemon} from '../../pokemon/store/actions/pokemon.actions';
 
 @Component({
   selector: 'app-pokemon-card',

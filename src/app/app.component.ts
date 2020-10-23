@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {PokemonState} from './pokemon/store/reducer/pokemon.reducer';
-import {selectPokemons} from './pokemon/store/selector/pokemon.selectors';
-import {loadFavoritePokemons, loadPokemons, useFavoritePokemons} from './pokemon/store/action/pokemon.actions';
+import {PokemonState} from './pokemon/store/reducers/pokemon.reducer';
+import {selectPokemons} from './pokemon/store/selectors/pokemon.selectors';
+import {loadFavoritePokemons, useFavoritePokemons} from './pokemon/store/actions/pokemon.actions';
 import {Pokemon} from './models/pokemon';
 import {Subscription} from 'rxjs';
 import {AppError} from './utils/error';
+import {loadPokemons} from './pokemons/store/actions/pokemons.actions';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadPokemons());
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (favorites) {
       this.store.dispatch(useFavoritePokemons(favorites));

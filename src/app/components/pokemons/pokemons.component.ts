@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {PokemonState} from '../../pokemon/store/reducer/pokemon.reducer';
-import {loadPokemons, searchPokemon} from '../../pokemon/store/action/pokemon.actions';
-import {selectPokemons} from '../../pokemon/store/selector/pokemon.selectors';
+import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
+import {loadPokemons, searchPokemon} from '../../pokemon/store/actions/pokemon.actions';
+import {selectPokemons} from '../../pokemon/store/selectors/pokemon.selectors';
 import {Pokemon} from '../../models/pokemon';
 import {Subscription} from 'rxjs';
+import {addPokemons} from '../../pokemons/store/actions/pokemons.actions';
 
 @Component({
   selector: 'app-pokemons',
@@ -34,6 +35,7 @@ export class PokemonsComponent implements OnInit, OnDestroy {
 
   loadMore(): void {
     this.store.dispatch(loadPokemons(this.nextUrl));
+    this.store.dispatch(addPokemons());
   }
 
   getPokemons(): void {

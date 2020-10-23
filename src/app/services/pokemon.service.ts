@@ -22,7 +22,8 @@ export class PokemonService {
           return ({
             nextUrl: data.next,
             pokemons: data.results.map(item => {
-              return {...item, imageUrl: this.getImageUrl(this.getPokemonId(item.url))};
+              const id = this.getPokemonId(item.url);
+              return {...item, id, imageUrl: this.getImageUrl(id)};
             })
           });
         }),

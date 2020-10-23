@@ -1,10 +1,15 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import * as PokemonActions from '../action/pokemon.actions';
+import * as PokemonActions from '../actions/pokemon.actions';
 import {Pokemon} from '../../../models/pokemon';
 import {AppError} from '../../../utils/error';
 import {environment} from '../../../../environments/environment';
+import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 
 export const pokemonFeatureKey = 'pokemon';
+
+export interface PokemonsState extends EntityState<Pokemon> {}
+
+export const adapter: EntityAdapter<Pokemon> = createEntityAdapter<Pokemon>();
 
 export interface PokemonState {
   searchedPokemon: string;
