@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
-import {closeModal, comparePokemons} from '../../pokemon/store/actions/pokemon.actions';
-import {selectPokemons} from '../../pokemon/store/selectors/pokemon.selectors';
+import {AppState} from '../../store/reducers/app.reducer';
+import {comparePokemons} from '../../store/actions/app.actions';
+import {selectPokemonState} from '../../store/selectors/app.selectors';
 import {Pokemon} from '../../models/pokemon';
 import {Subscription} from 'rxjs';
 import {ModalCard} from '../modal/modal-card';
@@ -16,9 +16,9 @@ export class PokemonDetailComponent extends ModalCard implements OnDestroy {
   pokemon: Pokemon;
   subscription: Subscription;
 
-  constructor(store: Store<PokemonState>) {
+  constructor(store: Store<AppState>) {
     super(store);
-    this.subscription = this.store.pipe(select(selectPokemons))
+    this.subscription = this.store.pipe(select(selectPokemonState))
       .subscribe(
         state => {
           this.pokemon = state.toShow;

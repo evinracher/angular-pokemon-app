@@ -1,12 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {PokemonState} from './pokemon/store/reducers/pokemon.reducer';
-import {selectPokemons} from './pokemon/store/selectors/pokemon.selectors';
-import {loadFavoritePokemons, useFavoritePokemons} from './pokemon/store/actions/pokemon.actions';
+import {AppState} from './store/reducers/app.reducer';
+import {selectPokemonState} from './store/selectors/app.selectors';
 import {Pokemon} from './models/pokemon';
 import {Subscription} from 'rxjs';
 import {AppError} from './utils/error';
-import {loadPokemons} from './pokemons/store/actions/pokemons.actions';
+import {usePokemons} from './pokemons/store/actions/pokemons.actions';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   toShow: Pokemon;
   subscription: Subscription;
 
-  constructor(private store: Store<PokemonState>) {
-    this.store.pipe(select(selectPokemons))
+  constructor(private store: Store<AppState>) {
+    this.store.pipe(select(selectPokemonState))
       .subscribe(
         state => {
           this.error = state.error;
@@ -33,13 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadPokemons());
-    const favorites = JSON.parse(localStorage.getItem('favorites'));
-    if (favorites) {
-      this.store.dispatch(useFavoritePokemons(favorites));
-    } else {
-      this.store.dispatch(loadFavoritePokemons());
-    }
+    this.store.dispatch(usePokemons());
   }
 
   ngOnDestroy(): void {

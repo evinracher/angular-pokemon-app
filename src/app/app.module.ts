@@ -14,9 +14,8 @@ import {StoreModule} from '@ngrx/store';
 import {reducers, metaReducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {PokemonModule} from './pokemon/pokemon.module';
 import {EffectsModule} from '@ngrx/effects';
-import {PokemonEffects} from './pokemon/store/effects/pokemon.effects';
+import {AppEffects} from './store/effects/app.effects';
 import {PokemonComparisonComponent} from './components/pokemon-comparison/pokemon-comparison.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {PokemonCardComponent} from './components/pokemon-card/pokemon-card.component';
@@ -30,6 +29,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import {PokemonsModule} from './pokemons/pokemons.module';
+import {PokemonsEffects} from './pokemons/store/effects/pokemons.effects';
+import {appKey, reducer} from './store/reducers/app.reducer';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,16 +49,17 @@ import {PokemonsModule} from './pokemons/pokemons.module';
     ConfirmDialogComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    PokemonModule,
     PokemonsModule,
     FormsModule,
     HttpClientModule,
     StoreDevtoolsModule,
     InfiniteScrollModule,
     StoreModule.forRoot(reducers, {metaReducers}),
-    EffectsModule.forRoot([PokemonEffects]),
+    StoreModule.forFeature(appKey, reducer),
+    EffectsModule.forRoot([AppEffects, PokemonsEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     NgbModule,
     NoopAnimationsModule,

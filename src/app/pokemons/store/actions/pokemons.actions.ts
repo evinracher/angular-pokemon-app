@@ -1,9 +1,13 @@
 import {createAction, props} from '@ngrx/store';
 import {Pokemon} from '../../../models/pokemon';
+import {Update} from '@ngrx/entity';
 
-// Get from local store or dispatch first addPokemons
+export const usePokemons = createAction(
+  '[Home] Use Pokemons'
+);
+
 export const loadPokemons = createAction(
-  '[Home] Load Pokemons'
+  '[App] Load Pokemons'
 );
 
 export const loadPokemonsSuccess = createAction(
@@ -15,13 +19,17 @@ export const addPokemons = createAction(
   '[Pokemons] Add Pokemons'
 );
 
-// Get next pokemons from API
 export const addPokemonsSuccess = createAction(
-  '[API] Add Pokemons',
+  '[API] Add Pokemons Success',
   props<{ nextUrl: string, pokemons: Pokemon[] }>()
 );
 
-export const addFavoritePokemon = createAction(
-  '[Home] Add Favorite Pokemon',
-  props<{ pokemon: Pokemon }>()
+export const setFavoriteProperty = createAction(
+  '[Favorite Button] Toggle Favorite Property',
+  props<{ id: string, value: boolean }>()
+);
+
+export const updatePokemon = createAction(
+  '[Pokemons] Update Pokemon',
+  props<{ update: Update<Pokemon> }>()
 );

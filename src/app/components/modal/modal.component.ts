@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
+import {AppState} from '../../store/reducers/app.reducer';
 import {Store} from '@ngrx/store';
-import {closeModal} from '../../pokemon/store/actions/pokemon.actions';
+import {closeModal} from '../../store/actions/app.actions';
 
 @Component({
   selector: 'app-modal',
@@ -11,7 +11,7 @@ import {closeModal} from '../../pokemon/store/actions/pokemon.actions';
 export class ModalComponent {
   @Input() errorCard: boolean;
 
-  constructor(private store: Store<PokemonState>) {
+  constructor(private store: Store<AppState>) {
   }
 
   closeModal(event: Event): void {

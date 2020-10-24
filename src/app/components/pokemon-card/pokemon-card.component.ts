@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
-import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
+import {AppState} from '../../store/reducers/app.reducer';
 import {Store} from '@ngrx/store';
-import {selectPokemon} from '../../pokemon/store/actions/pokemon.actions';
+import {selectPokemon} from '../../store/actions/app.actions';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -12,7 +12,7 @@ import {selectPokemon} from '../../pokemon/store/actions/pokemon.actions';
 export class PokemonCardComponent {
   @Input() pokemon: Pokemon;
 
-  constructor(private store: Store<PokemonState>) {
+  constructor(private store: Store<AppState>) {
   }
 
   selectThisPokemon(pokemon: Pokemon): void {

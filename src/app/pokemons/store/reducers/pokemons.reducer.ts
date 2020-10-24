@@ -4,7 +4,6 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {environment} from '../../../../environments/environment';
 import * as PokemonActions from '../actions/pokemons.actions';
 
-// TODO: Save pokemons also into the local storage
 export const pokemonsKey = 'pokemons';
 
 export interface PokemonsState extends EntityState<Pokemon> {
@@ -13,7 +12,6 @@ export interface PokemonsState extends EntityState<Pokemon> {
 
 export const adapter: EntityAdapter<Pokemon> = createEntityAdapter<Pokemon>();
 
-// TODO: get from local storage
 export const initialState: PokemonsState = adapter.getInitialState({
   nextUrl: environment.pokemonsUrl
 });
@@ -27,7 +25,13 @@ const pokemonsReducer = createReducer(
   on(PokemonActions.addPokemonsSuccess,
     (state, {nextUrl, pokemons}) => {
       console.log(pokemons);
+      localStorage.setItem('pokemons', JSON.stringify(Object.values(state.entities).concat(pokemons)));
+      localStorage.setItem('nextUrl', nextUrl);
       return adapter.addMany(pokemons, {...state, nextUrl});
+    }),
+  on(PokemonActions.updatePokemon,
+    (state, {update}) => {
+      return adapter.updateOne(update, state);
     })
 );
 

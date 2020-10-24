@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
-import {addToFavoritePokemons, removeFromFavoritePokemons} from '../../pokemon/store/actions/pokemon.actions';
+import {AppState} from '../../store/reducers/app.reducer';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
-import {TypedAction} from '@ngrx/store/src/models';
+import {setFavoriteProperty, updatePokemon} from '../../pokemons/store/actions/pokemons.actions';
 
 
 @Component({
@@ -14,12 +13,12 @@ import {TypedAction} from '@ngrx/store/src/models';
 })
 export class FavoriteBtnComponent {
   @Input() isFavorite: boolean;
-  @Input() url: string;
+  @Input() id: string;
 
-  constructor(private store: Store<PokemonState>, public dialog: MatDialog) {
+  constructor(private store: Store<AppState>, public dialog: MatDialog) {
   }
 
-  makeFavorite(event: Event, url: string): void {
+  makeFavorite(event: Event, id: string): void {
     event.stopPropagation();
     const dialogData = new ConfirmDialogModel(
       'Confirm Action',
@@ -32,12 +31,12 @@ export class FavoriteBtnComponent {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        this.store.dispatch(addToFavoritePokemons(url));
+        this.store.dispatch(setFavoriteProperty({id, value: true}));
       }
     });
   }
 
-  deleteFavorite(event: Event, url: string): void {
+  deleteFavorite(event: Event, id: string): void {
     event.stopPropagation();
     const dialogData = new ConfirmDialogModel(
       'Confirm Action',
@@ -50,7 +49,7 @@ export class FavoriteBtnComponent {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        this.store.dispatch(removeFromFavoritePokemons(url));
+        this.store.dispatch(setFavoriteProperty({id, value: false}));
       }
     });
   }

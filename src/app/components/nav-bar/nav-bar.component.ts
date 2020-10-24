@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
+import {AppState} from '../../store/reducers/app.reducer';
 import {Store} from '@ngrx/store';
-import {searchPokemon} from '../../pokemon/store/actions/pokemon.actions';
+import {searchPokemon} from '../../store/actions/app.actions';
 import {Subscription} from 'rxjs';
 import {PokemonRoute} from './route';
 
@@ -15,7 +15,7 @@ export class NavBarComponent implements OnDestroy {
   searching: boolean;
   subscription: Subscription;
 
-  constructor(private router: Router, private store: Store<PokemonState>) {
+  constructor(private router: Router, private store: Store<AppState>) {
     this.subscription = router.events
       .subscribe(event => {
         const route: PokemonRoute = event as PokemonRoute;

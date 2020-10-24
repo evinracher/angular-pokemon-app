@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {PokemonState} from '../../pokemon/store/reducers/pokemon.reducer';
-import {loadPokemons, searchPokemon} from '../../pokemon/store/actions/pokemon.actions';
-import {selectPokemons} from '../../pokemon/store/selectors/pokemon.selectors';
 import {Pokemon} from '../../models/pokemon';
 import {Subscription} from 'rxjs';
 import {addPokemons} from '../../pokemons/store/actions/pokemons.actions';
+import {PokemonsState} from '../../pokemons/store/reducers/pokemons.reducer';
+import {selectAllPokemons} from '../../pokemons/store/selectors/pokemons.selectors';
+import {searchPokemon} from '../../store/actions/app.actions';
 
 @Component({
   selector: 'app-pokemons',
@@ -14,17 +14,15 @@ import {addPokemons} from '../../pokemons/store/actions/pokemons.actions';
 })
 export class PokemonsComponent implements OnInit, OnDestroy {
   pokemons: Pokemon[];
-  nextUrl: string;
   subscription: Subscription;
 
   constructor(
-    private store: Store<PokemonState>
+    private store: Store<PokemonsState>
   ) {
-    this.subscription = this.store.pipe(select(selectPokemons))
+    this.subscription = this.store.pipe(select(selectAllPokemons))
       .subscribe(
-        state => {
-          this.pokemons = state.pokemons;
-          this.nextUrl = state.nextUrl;
+        pokemons => {
+          this.pokemons = pokemons;
         }
       );
   }
@@ -34,7 +32,6 @@ export class PokemonsComponent implements OnInit, OnDestroy {
   }
 
   loadMore(): void {
-    this.store.dispatch(loadPokemons(this.nextUrl));
     this.store.dispatch(addPokemons());
   }
 

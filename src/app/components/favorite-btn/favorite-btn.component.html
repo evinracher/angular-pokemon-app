@@ -1,10 +1,10 @@
 <div *ngIf="isFavorite; else noFavorite">
-  <i class="favorite material-icons" (click)="deleteFavorite($event,url)">
+  <i class="favorite material-icons" (click)="deleteFavorite($event,id)">
     &#XE838;
   </i>
 </div>
 <ng-template #noFavorite>
-  <i class="material-icons" (click)="makeFavorite($event,url)">
+  <i class="material-icons" (click)="makeFavorite($event,id)">
     &#XE83A;
   </i>
 </ng-template>
