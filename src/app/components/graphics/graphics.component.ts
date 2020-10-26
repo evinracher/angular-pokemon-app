@@ -18,8 +18,8 @@ export class GraphicsComponent implements OnInit {
   ngOnInit(): void {
     const colors = ['rgb(62, 130, 115)', 'rgb(102, 209, 188)'];
     const colorsLength = colors.length;
-    this.dataset.forEach((item, index) => {
-      this.datasets.push({
+    this.datasets = this.dataset.map((item, index) => {
+      return ({
         data: item,
         categoryPercentage: 0.8,
         backgroundColor: colors[index % colorsLength]

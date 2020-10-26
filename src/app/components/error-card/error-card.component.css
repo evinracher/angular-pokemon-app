@@ -9,10 +9,3 @@
 .error-card__title {
   margin-bottom: 0;
 }
-
-.error-card__btn {
-  height: 2rem;
-  padding: 0.2rem 1rem;
-  font-weight: 700;
-  margin-top: 1rem;
-}

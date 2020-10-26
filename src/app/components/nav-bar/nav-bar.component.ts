@@ -1,10 +1,11 @@
 import {Component, OnDestroy} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {PokemonRoute} from './route';
 import {searchPokemon} from '../../pokemons/store/actions/pokemons.actions';
 import {PokemonsState} from '../../pokemons/store/reducers/pokemons.reducer';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,17 +18,15 @@ export class NavBarComponent implements OnDestroy {
 
   constructor(private router: Router, private store: Store<PokemonsState>) {
     this.subscription = router.events
-      .subscribe(event => {
+      .pipe(
+        filter((event) => event instanceof NavigationEnd)
+      )
+      .subscribe((event) => {
         const route: PokemonRoute = event as PokemonRoute;
-        switch (true) {
-          case event instanceof NavigationEnd: {
-            if (route.url === '/pokemons') {
-              this.searching = true;
-            } else {
-              this.searching = false;
-            }
-            break;
-          }
+        if (route.url === '/pokemons') {
+          this.searching = true;
+        } else {
+          this.searching = false;
         }
       });
   }

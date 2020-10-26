@@ -24,13 +24,13 @@ export const addPokemonsSuccess = createAction(
   props<{ nextUrl: string, pokemons: Pokemon[] }>()
 );
 
-export const setFavoriteProperty = createAction(
-  '[Favorite Button] Toggle Favorite Property',
+export const setFavoritePokemon = createAction(
+  '[Favorite Button] Set Favorite Pokemon',
   props<{ id: string, value: boolean }>()
 );
 
-export const updatePokemon = createAction(
-  '[Pokemons] Update Pokemon',
+export const setFavoritePokemonSuccess = createAction(
+  '[API] Set Favorite Pokemon Success',
   props<{ update: Update<Pokemon> }>()
 );
 

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private store: Store<PokemonsState>) {
-    this.store.pipe(select(selectPokemonsState))
+    this.subscription = this.store.pipe(select(selectPokemonsState))
       .subscribe(
         state => {
           this.error = state.error;

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {forkJoin} from 'rxjs';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {Pokemon} from '../models/pokemon';
 import {environment} from '../../environments/environment';
-import {PokemonResponse, PokemonSpecie} from './pokemon-response';
+import {ResponseList, PokemonResponse, PokemonSpecie, PokemonResponseList} from './pokemon-response';
+import {PokemonsState} from '../pokemons/store/reducers/pokemons.reducer';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,10 @@ export class PokemonService {
   constructor(private http: HttpClient) {
   }
 
-  getPokemons(url: string): Observable<any> {
-    return this.http.get<any>(url)
+  getPokemons(url: string): Observable<PokemonResponseList> {
+    return this.http.get(url)
       .pipe(
-        map(data => {
+        map((data: ResponseList) => {
           return ({
             nextUrl: data.next,
             pokemons: data.results.map(item => {
@@ -27,7 +27,7 @@ export class PokemonService {
             })
           });
         }),
-        catchError(this.handleError<Pokemon[]>('getHeroes', []))
+        catchError(this.handleError<Pokemon[]>('getPokemons', []))
       );
   }
 
@@ -104,20 +104,9 @@ export class PokemonService {
     );
   }
 
-  getInitials(): Observable<Pokemon[]> {
-    const observableBatch: Observable<Pokemon>[] = [];
-    environment.initialPokemons.forEach((name) => {
-      if (name) {
-        observableBatch.push(this.getPokemonByName(name));
-      }
-    });
-    return forkJoin(observableBatch);
-  }
-
   private handleError<T>(operation = 'operation', result?: T): any {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      // Let the app keep running by returning an empty result.
+      console.error(error);
       return of(result as T);
     };
   }

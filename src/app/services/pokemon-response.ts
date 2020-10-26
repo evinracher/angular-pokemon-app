@@ -1,4 +1,4 @@
-import {Ability, Type} from '../models/pokemon';
+import {Ability, Pokemon, Type} from '../models/pokemon';
 
 export interface PokemonResponse {
   id: string;
@@ -30,4 +30,12 @@ export interface PokemonSpecie {
   gender_rate: number;
 }
 
+export interface ResponseList {
+  next: string;
+  results: PokemonResponse[];
+}
 
+export interface PokemonResponseList {
+  nextUrl: string;
+  pokemons: Pokemon[];
+}

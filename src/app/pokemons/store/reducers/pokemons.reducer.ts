@@ -38,13 +38,19 @@ const pokemonsReducer = createReducer(
       localStorage.setItem('nextUrl', nextUrl);
       return adapter.addMany(pokemons, {...state, nextUrl});
     }),
-  on(PokemonsActions.updatePokemon,
+  on(PokemonsActions.setFavoritePokemonSuccess,
     (state, {update}) => {
+      if (update.id === state.toShow?.id) {
+        return adapter.updateOne(update, {
+          ...state, toShow: {
+            ...state.toShow, isFavorite: update.changes.isFavorite
+          }
+        });
+      }
       return adapter.updateOne(update, state);
     }),
   on(
-    PokemonsActions.selectPokemon,
-    (state) => state
+    PokemonsActions.selectPokemon
   ),
   on(
     PokemonsActions.selectPokemonSuccess,

@@ -30,7 +30,7 @@ export const selectFilteredPokemons = createSelector(
 export const selectAllFavoritePokemons = createSelector(
   selectAllPokemons,
   (entities) => {
-    return entities.filter(pokemon => pokemon.isFavorite);
+    return  entities.filter(pokemon => pokemon.isFavorite);
   }
 );
 

@@ -34,8 +34,8 @@ export class PokemonsEffects {
   loadPokemons$ = createEffect(() => this.actions$.pipe(
     ofType(PokemonsActions.loadPokemons),
     withLatestFrom(this.store.select(getNextUrl)),
-    mergeMap(res => {
-      return this.pokemonService.getPokemons(res[1].nextUrl)
+    mergeMap(([, {nextUrl: url}]) => {
+      return this.pokemonService.getPokemons(url)
         .pipe(
           map(({nextUrl, pokemons}) => {
             return PokemonsActions.addPokemonsSuccess({
@@ -51,8 +51,8 @@ export class PokemonsEffects {
   addPokemons$ = createEffect(() => this.actions$.pipe(
     ofType(PokemonsActions.addPokemons),
     withLatestFrom(this.store.select(getNextUrl)),
-    mergeMap(res => {
-      return this.pokemonService.getPokemons(res[1].nextUrl)
+    mergeMap(([, {nextUrl: url}]) => {
+      return this.pokemonService.getPokemons(url)
         .pipe(
           map(({nextUrl, pokemons}) => {
             return PokemonsActions.addPokemonsSuccess({nextUrl, pokemons});
@@ -61,17 +61,17 @@ export class PokemonsEffects {
   ));
 
   setFavorite$ = createEffect(() => this.actions$.pipe(
-    ofType(PokemonsActions.setFavoriteProperty),
+    ofType(PokemonsActions.setFavoritePokemon),
     withLatestFrom(this.store.select(selectAllFavoritePokemons)),
-    map(res => {
-      if (res[1].length >= 5 && res[0].value) {
+    map(([pokemon, favoritePokemons]) => {
+      if (favoritePokemons.length >= 5 && pokemon.value) {
         return PokemonsActions.setError({msg: 'Error: Maximum number of favorite pokemons has been reached'});
       } else {
-        return PokemonsActions.updatePokemon({
+        return PokemonsActions.setFavoritePokemonSuccess({
           update: {
-            id: res[0].id,
+            id: pokemon.id,
             changes: {
-              isFavorite: res[0].value
+              isFavorite: pokemon.value
             }
           }
         });
@@ -95,11 +95,10 @@ export class PokemonsEffects {
 
   saveStorage$ = createEffect(() => this.actions$.pipe
     (
-      ofType(PokemonsActions.addPokemonsSuccess, PokemonsActions.updatePokemon),
+      ofType(PokemonsActions.addPokemonsSuccess, PokemonsActions.setFavoritePokemonSuccess),
       withLatestFrom(this.store.select(selectAllPokemons)),
       tap((data) => {
         localStorage.setItem('pokemons', JSON.stringify(data[1]));
-        // localStorage.setItem('nextUrl', dat);
       })
     ),
     {dispatch: false});

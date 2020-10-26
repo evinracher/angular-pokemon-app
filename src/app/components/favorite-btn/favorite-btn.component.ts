@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
-import {setFavoriteProperty} from '../../pokemons/store/actions/pokemons.actions';
+import {setFavoritePokemon} from '../../pokemons/store/actions/pokemons.actions';
 import {PokemonsState} from '../../pokemons/store/reducers/pokemons.reducer';
 
 
@@ -21,8 +21,10 @@ export class FavoriteBtnComponent {
   makeFavorite(event: Event, id: string): void {
     event.stopPropagation();
     const dialogData = new ConfirmDialogModel(
-      'Confirm Action',
-      'Are you sure you want to add this to favorites?');
+      {
+        title: 'Confirm Action',
+        message: 'Are you sure you want to add this to favorites?'
+      });
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '400px',
@@ -31,7 +33,7 @@ export class FavoriteBtnComponent {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        this.store.dispatch(setFavoriteProperty({id, value: true}));
+        this.store.dispatch(setFavoritePokemon({id, value: true}));
       }
     });
   }
@@ -39,8 +41,10 @@ export class FavoriteBtnComponent {
   deleteFavorite(event: Event, id: string): void {
     event.stopPropagation();
     const dialogData = new ConfirmDialogModel(
-      'Confirm Action',
-      'Are you sure you want to remove this from favorites?');
+      {
+        title: 'Confirm Action',
+        message: 'Are you sure you want to remove this from favorites?'
+      });
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '400px',
@@ -49,7 +53,7 @@ export class FavoriteBtnComponent {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
-        this.store.dispatch(setFavoriteProperty({id, value: false}));
+        this.store.dispatch(setFavoritePokemon({id, value: false}));
       }
     });
   }
