@@ -33,3 +33,8 @@ export const updatePokemon = createAction(
   '[Pokemons] Update Pokemon',
   props<{ update: Update<Pokemon> }>()
 );
+
+export const setError = createAction(
+  '[App] Set Error',
+  props<{ msg: string }>()
+);

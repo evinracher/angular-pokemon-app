@@ -1,5 +1,5 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import * as PokemonActions from '../actions/app.actions';
+import * as AppActions from '../actions/app.actions';
 import {Pokemon} from '../../models/pokemon';
 import {AppError} from '../../utils/error';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
@@ -27,11 +27,11 @@ export const initialState: AppState = {
 export const appReducer = createReducer(
   initialState,
   on(
-    PokemonActions.selectPokemon,
+    AppActions.selectPokemon,
     (state) => state
   ),
   on(
-    PokemonActions.selectPokemonSuccess,
+    AppActions.selectPokemonSuccess,
     (state: AppState, {pokemon}) => {
       if (state.comparing) {
         return {...state, toCompare: pokemon};
@@ -41,14 +41,14 @@ export const appReducer = createReducer(
     }
   ),
   on(
-    PokemonActions.comparePokemons,
+    AppActions.comparePokemons,
     (state: AppState) => {
       console.log('Comparing pokemons');
       return {...state, comparing: true};
     }
   ),
   on(
-    PokemonActions.closeModal,
+    AppActions.closeModal,
     (state: AppState) => {
       return ({
         ...state,
@@ -60,7 +60,7 @@ export const appReducer = createReducer(
     }
   ),
   on(
-    PokemonActions.searchPokemon,
+    AppActions.searchPokemon,
     (state: AppState, {searchedPokemon}) => {
       return ({
         ...state,
@@ -69,7 +69,7 @@ export const appReducer = createReducer(
     }
   ),
   on(
-    PokemonActions.setError,
+    AppActions.setError,
     (state: AppState, {msg}) => {
       return ({
         ...state, error: { msg}

@@ -68,7 +68,7 @@ export class PokemonsEffects {
   setFavorite$ = createEffect(() => this.actions$.pipe(
     ofType(PokemonsActions.setFavoriteProperty),
     withLatestFrom(this.store.select(selectAllFavoritePokemons)),
-    mergeMap(res => {
+    map(res => {
       console.log(res);
       if (res[1].length >= 5) {
         // Change all the actions to be in this module, accessing properties through th state
