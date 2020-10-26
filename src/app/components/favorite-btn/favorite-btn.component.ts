@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/reducers/app.reducer';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
-import {setFavoriteProperty, updatePokemon} from '../../pokemons/store/actions/pokemons.actions';
+import {setFavoriteProperty} from '../../pokemons/store/actions/pokemons.actions';
+import {PokemonsState} from '../../pokemons/store/reducers/pokemons.reducer';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class FavoriteBtnComponent {
   @Input() isFavorite: boolean;
   @Input() id: string;
 
-  constructor(private store: Store<AppState>, public dialog: MatDialog) {
+  constructor(private store: Store<PokemonsState>, public dialog: MatDialog) {
   }
 
   makeFavorite(event: Event, id: string): void {

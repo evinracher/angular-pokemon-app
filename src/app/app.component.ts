@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState} from './store/reducers/app.reducer';
-import {selectPokemonState} from './store/selectors/app.selectors';
 import {Pokemon} from './models/pokemon';
 import {Subscription} from 'rxjs';
 import {AppError} from './utils/error';
 import {usePokemons} from './pokemons/store/actions/pokemons.actions';
+import {PokemonsState} from './pokemons/store/reducers/pokemons.reducer';
+import {selectPokemonsState} from './pokemons/store/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   toShow: Pokemon;
   subscription: Subscription;
 
-  constructor(private store: Store<AppState>) {
-    this.store.pipe(select(selectPokemonState))
+  constructor(private store: Store<PokemonsState>) {
+    this.store.pipe(select(selectPokemonsState))
       .subscribe(
         state => {
           this.error = state.error;

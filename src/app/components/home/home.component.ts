@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Pokemon} from '../../models/pokemon';
 import {select, Store} from '@ngrx/store';
-import {AppState} from '../../store/reducers/app.reducer';
 import {Subscription} from 'rxjs';
 import {selectAllFavoritePokemons} from '../../pokemons/store/selectors/pokemons.selectors';
+import {PokemonsState} from '../../pokemons/store/reducers/pokemons.reducer';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ export class HomeComponent implements OnDestroy {
   favoritePokemons: Pokemon[];
   subscription: Subscription;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<PokemonsState>) {
     this.subscription = this.store.pipe(select(selectAllFavoritePokemons))
       .subscribe(
         favoritePokemons => {

@@ -1,10 +1,10 @@
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/reducers/app.reducer';
-import {closeModal} from '../../store/actions/app.actions';
+import {closeModal} from '../../pokemons/store/actions/pokemons.actions';
+import {PokemonsState} from '../../pokemons/store/reducers/pokemons.reducer';
 
 export class ModalCard {
 
-  constructor(protected store: Store<AppState>) {
+  constructor(protected store: Store<PokemonsState>) {
     this.store = store;
   }
 

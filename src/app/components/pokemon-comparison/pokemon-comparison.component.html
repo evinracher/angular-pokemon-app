@@ -19,9 +19,9 @@
         <p>{{toCompare.height * 10}}cm</p>
       </div>
       <div class="data__row">
-        <p>{{toShow.weight * 0.1}}kg</p>
+        <p>{{toShow.weight * 0.1 | number:'.2'}}kg</p>
         <strong>Weight</strong>
-        <p>{{toCompare.weight * 0.1}}kg</p>
+        <p>{{toCompare.weight * 0.1 | number: '.2'}}kg</p>
       </div>
       <div class="data__row">
         <p>{{toShow.gender}}</p>

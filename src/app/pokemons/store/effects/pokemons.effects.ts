@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as PokemonsActions from '../actions/pokemons.actions';
-import * as StateActions from '../../../store/actions/app.actions';
-import {map, mergeMap, withLatestFrom} from 'rxjs/operators';
+import {map, mergeMap, tap, withLatestFrom} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {PokemonsState} from '../reducers/pokemons.reducer';
-import {getNextUrl, selectAllFavoritePokemons} from '../selectors/pokemons.selectors';
+import {getNextUrl, selectAllFavoritePokemons, selectAllPokemons} from '../selectors/pokemons.selectors';
 import {PokemonService} from '../../../services/pokemon.service';
 import {environment} from '../../../../environments/environment';
 
@@ -23,13 +22,9 @@ export class PokemonsEffects {
     map(() => {
       const pokemons = JSON.parse(localStorage.getItem('pokemons'));
       const nextUrl = localStorage.getItem('nextUrl');
-      console.dir(pokemons);
-      console.dir(nextUrl);
       if (pokemons && nextUrl) {
-        console.log('[new] loading pokemons');
         return PokemonsActions.loadPokemonsSuccess({nextUrl, pokemons});
       } else {
-        console.log('[new] charging pokemons');
         return PokemonsActions.loadPokemons();
       }
     })
@@ -69,10 +64,8 @@ export class PokemonsEffects {
     ofType(PokemonsActions.setFavoriteProperty),
     withLatestFrom(this.store.select(selectAllFavoritePokemons)),
     map(res => {
-      console.log(res);
-      if (res[1].length >= 5) {
-        // Change all the actions to be in this module, accessing properties through th state
-        return StateActions.setError('Error');
+      if (res[1].length >= 5 && res[0].value) {
+        return PokemonsActions.setError({msg: 'Error: Maximum number of favorite pokemons has been reached'});
       } else {
         return PokemonsActions.updatePokemon({
           update: {
@@ -85,4 +78,29 @@ export class PokemonsEffects {
       }
     })
   ));
+
+  selectPokemon$ = createEffect(() => this.actions$.pipe(
+    ofType(PokemonsActions.selectPokemon),
+    mergeMap(({pokemon}) => {
+      return this.pokemonService.getPokemon(pokemon.url)
+        .pipe(
+          map(result => {
+            return (PokemonsActions.selectPokemonSuccess({
+              pokemon: {...result, isFavorite: pokemon.isFavorite}
+            }));
+          })
+        );
+    })
+  ));
+
+  saveStorage$ = createEffect(() => this.actions$.pipe
+    (
+      ofType(PokemonsActions.addPokemonsSuccess, PokemonsActions.updatePokemon),
+      withLatestFrom(this.store.select(selectAllPokemons)),
+      tap((data) => {
+        localStorage.setItem('pokemons', JSON.stringify(data[1]));
+        // localStorage.setItem('nextUrl', dat);
+      })
+    ),
+    {dispatch: false});
 }

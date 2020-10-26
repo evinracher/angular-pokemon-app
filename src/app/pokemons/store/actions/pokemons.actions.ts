@@ -38,3 +38,26 @@ export const setError = createAction(
   '[App] Set Error',
   props<{ msg: string }>()
 );
+
+export const selectPokemon = createAction(
+  '[Pokemons] Select Pokemon',
+  props<{ pokemon: Pokemon }>(),
+);
+
+export const selectPokemonSuccess = createAction(
+  '[API] Select Pokemon Success',
+  props<{ pokemon: Pokemon }>()
+);
+
+export const comparePokemons = createAction(
+  '[Pokemon detail] Compare Pokemons'
+);
+
+export const closeModal = createAction(
+  '[Modal] Close Modal'
+);
+
+export const searchPokemon = createAction(
+  '[Search box] Search Pokemon',
+  props<{ searchedPokemon: string }>(),
+);
