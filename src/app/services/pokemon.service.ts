@@ -5,7 +5,6 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import {Pokemon} from '../models/pokemon';
 import {environment} from '../../environments/environment';
 import {ResponseList, PokemonResponse, PokemonSpecie, PokemonResponseList} from './pokemon-response';
-import {PokemonsState} from '../pokemons/store/reducers/pokemons.reducer';
 
 @Injectable({
   providedIn: 'root'

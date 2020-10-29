@@ -30,7 +30,6 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import {PokemonsModule} from './pokemons/pokemons.module';
 import {PokemonsEffects} from './pokemons/store/effects/pokemons.effects';
 import {CommonModule} from '@angular/common';
-import {pokemonsKey, reducer} from './pokemons/store/reducers/pokemons.reducer';
 
 @NgModule({
   declarations: [
