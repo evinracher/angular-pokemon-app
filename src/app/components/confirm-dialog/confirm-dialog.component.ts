@@ -8,10 +8,11 @@ import {Dialog} from './dialog';
   styleUrls: ['./confirm-dialog.component.css']
 })
 export class ConfirmDialogComponent {
-  dialog: Dialog
+  dialog: Dialog;
+
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) {
-    this.dialog = data.dialog;
+              @Inject(MAT_DIALOG_DATA) public data: Dialog) {
+    this.dialog = data;
   }
 
   onConfirm(): void {
@@ -20,11 +21,5 @@ export class ConfirmDialogComponent {
 
   onDismiss(): void {
     this.dialogRef.close(false);
-  }
-}
-
-export class ConfirmDialogModel {
-
-  constructor(public dialog: Dialog) {
   }
 }

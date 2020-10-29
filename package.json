@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --base-href='https://evinracher.github.io/angular-pokemon-app/' && ng deploy --base-href='https://evinracher.github.io/angular-pokemon-app/'"
   },
   "private": true,
   "dependencies": {
@@ -36,7 +37,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.2",
+    "@angular-devkit/build-angular": "^0.1002.0",
     "@angular/cli": "~10.1.2",
     "@angular/compiler-cli": "~10.1.2",
     "@types/jasmine": "~3.5.0",

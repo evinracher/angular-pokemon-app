@@ -4,12 +4,12 @@
   </router-outlet>
 </div>
 <app-error-card *ngIf="error"></app-error-card>
-<div *ngIf="(!comparing); else comparingContainer">
+<div *ngIf="!comparing; else comparingContainer">
   <app-pokemon-detail></app-pokemon-detail>
 </div>
 <ng-template #comparingContainer>
   <div *ngIf="!toCompare" class="comparing">
-    <p class="comparing__title">Comparing pokemon</p>
+    <h3 class="comparing__title">Comparing pokemon</h3>
     <p class="comparing__name">{{toShow.name | uppercase}}</p>
   </div>
   <app-pokemon-comparison></app-pokemon-comparison>
