@@ -13,7 +13,6 @@ export class Pokemon {
   statsData?: number[];
 }
 
-
 export interface Ability {
   ability: {
     name: string;
