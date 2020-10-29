@@ -11,7 +11,6 @@ import {PokemonsComponent} from './components/pokemons/pokemons.component';
 import {HomeComponent} from './components/home/home.component';
 import {PokemonDetailComponent} from './components/pokemon-detail/pokemon-detail.component';
 import {StoreModule} from '@ngrx/store';
-import {reducers, metaReducers} from './reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
@@ -55,7 +54,7 @@ import {CommonModule} from '@angular/common';
     HttpClientModule,
     StoreDevtoolsModule,
     InfiniteScrollModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([PokemonsEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     NgbModule,
