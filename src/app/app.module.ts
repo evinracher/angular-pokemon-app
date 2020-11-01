@@ -25,7 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog.component';
 import {PokemonsModule} from './pokemons/pokemons.module';
 import {PokemonsEffects} from './pokemons/store/effects/pokemons.effects';
 import {CommonModule} from '@angular/common';
