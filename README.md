@@ -1,5 +1,7 @@
 # AngularPokemonApp
 
+See the app on: https://evinracher.github.io/angular-pokemon-app/home
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
 
 ## Development server
