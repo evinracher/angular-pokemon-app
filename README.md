@@ -4,6 +4,7 @@ A simple pokedex app made with Angular during my degree internship
 
 See the app on: https://evinracher.github.io/angular-pokemon-app/home
 
+![image](https://user-images.githubusercontent.com/25867770/166126490-5645851c-37d0-4d96-9bf5-812838a8b71a.png)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
